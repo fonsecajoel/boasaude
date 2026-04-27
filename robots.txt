@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /pages/checkout.html
+Disallow: /pages/confirmacao.html
+Disallow: /pages/login.html
+Disallow: /pages/registo.html
+
+Sitemap: https://www.boasaude.pt/sitemap.xml

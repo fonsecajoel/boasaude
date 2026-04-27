@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serviços | Espaço Boa Saúde</title>
+    <meta name="description" content="Os Nossos Serviços: Aconselhamento Personalizado, Naturopatia, Fitoterapia, Aromaterapia e Nutrição Natural.">
+    <link rel="icon" href="data:," type="image/x-icon">
+    <link rel="stylesheet" href="../css/design-system.css">
+    <style>
+        :root {
+            --c-primary: #2d4a3e;
+            --c-bg: #faf9f6;
+            --c-accent: #c4856a;
+            --c-muted: #6c736f;
+            --c-sage: #8fae8b;
+        }
+
+        body {
+            background: var(--c-bg);
+            color: var(--c-primary);
+            font-family: var(--f-body);
+            margin: 0;
+        }
+
+        .services-hero,
+        .services-section,
+        .cta-section,
+        .store-info {
+            padding: 4rem 0;
+        }
+
+        .services-hero {
+            background: var(--c-primary);
+            color: var(--c-bg);
+            text-align: center;
+        }
+
+        .services-hero h1,
+        .service-card h2,
+        .cta-section h2,
+        .store-info h2 {
+            font-family: var(--f-display);
+            margin: 0;
+        }
+
+        .services-hero h1 { font-size: clamp(2.5rem, 5vw, 4rem); }
+        .services-hero p { color: var(--c-sage); max-width: 42rem; margin: 1rem auto 0; }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .service-card {
+            background: #fff;
+            border-top: 4px solid var(--c-sage);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(45, 74, 62, 0.08);
+            padding: 2rem;
+            transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            border-top-color: var(--c-accent);
+            box-shadow: 0 16px 40px rgba(45, 74, 62, 0.12);
+        }
+
+        .service-card__icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h2 { font-size: 1.6rem; margin-bottom: .75rem; }
+        .service-card p { color: var(--c-muted); line-height: 1.7; }
+
+        .service-card a,
+        .cta-section a {
+            display: inline-block;
+            text-decoration: none;
+            border-radius: 999px;
+            padding: .9rem 1.4rem;
+            font-weight: 700;
+        }
+
+        .service-card a {
+            border: 2px solid var(--c-accent);
+            color: var(--c-accent);
+            margin-top: 1rem;
+        }
+
+        .service-card a:hover,
+        .cta-section a:hover {
+            background: var(--c-accent);
+            color: #fff;
+        }
+
+        .cta-section {
+            background: rgba(143, 174, 139, 0.25);
+            text-align: center;
+        }
+
+        .cta-section p,
+        .store-info p { color: var(--c-muted); max-width: 40rem; margin: 1rem auto 0; }
+
+        .cta-section a {
+            background: var(--c-primary);
+            color: #fff;
+            margin-top: 1.5rem;
+        }
+
+        .store-info {
+            text-align: center;
+            border-top: 1px solid rgba(45, 74, 62, 0.12);
+        }
+
+        .store-info h2 { font-size: 2rem; margin-bottom: 1rem; }
+        .store-info p { margin: .4rem auto; }
+    </style>
+</head>
+<body>
+<header class="header"><div class="container"><div class="header-logo"><a href="/">Espaço Boa Saúde<span class="tagline">Terapias Naturais</span></a></div><nav class="header-nav"><a href="/#marcas">Marcas</a><a href="/#produtos">Produtos</a><a href="/pages/servicos.html">Serviços</a><a href="/pages/blog.html">Blog</a><a href="/pages/sobre.html">Sobre Nós</a></nav><div class="header-actions"><button class="icon-btn search-toggle" aria-label="Procurar"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button><a href="/pages/login.html" class="icon-btn" aria-label="Conta"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a><button class="icon-btn cart-btn" aria-label="Carrinho"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><span class="cart-count">0</span></button><button class="hamburger-btn" aria-label="Menu"><span></span><span></span><span></span></button></div></div></header>
+
+<div class="mobile-nav"><div class="mobile-nav-overlay"></div><div class="mobile-nav-content"><button class="mobile-nav-close" aria-label="Fechar menu"></button><nav><a href="/#marcas">Marcas</a><a href="/#produtos">Produtos</a><a href="/pages/servicos.html">Serviços</a><a href="/pages/blog.html">Blog</a><a href="/pages/sobre.html">Sobre Nós</a></nav></div></div>
+
+<div class="cart-slideout"><div class="cart-slideout-overlay"></div><div class="cart-slideout-content"><div class="cart-slideout-header"><h2>O seu carrinho</h2><button class="cart-slideout-close" aria-label="Fechar carrinho"></button></div><div class="cart-slideout-items"></div><div class="cart-slideout-footer"><div class="cart-slideout-total"><span>Total</span><span class="cart-slideout-total-price">0,00 €</span></div><button class="btn btn--primary cart-slideout-checkout">Finalizar Compra</button></div></div></div>
+
+<main>
+    <section class="services-hero">
+        <div class="container">
+            <h1>Os Nossos Serviços</h1>
+            <p>Descubra uma abordagem holística para a sua saúde e bem-estar</p>
+        </div>
+    </section>
+
+    <section class="services-section">
+        <div class="container">
+            <div class="services-grid">
+                <article class="service-card">
+                    <div class="service-card__icon">☤</div>
+                    <h2>Aconselhamento Personalizado</h2>
+                    <p>Consulta individual para encontrar os suplementos ideais para as suas necessidades específicas.</p>
+                    <a href="https://wa.me/351919086529" target="_blank" rel="noreferrer">Marque via WhatsApp</a>
+                </article>
+                <article class="service-card">
+                    <div class="service-card__icon">🌿</div>
+                    <h2>Naturopatia</h2>
+                    <p>Abordagem holística à saúde, combinando suplementação natural com hábitos de vida saudáveis e equilibrados.</p>
+                    <a href="https://wa.me/351919086529" target="_blank" rel="noreferrer">Saber mais</a>
+                </article>
+                <article class="service-card">
+                    <div class="service-card__icon">🌱</div>
+                    <h2>Fitoterapia</h2>
+                    <p>Terapia com plantas medicinais. Fórmulas personalizadas criadas para a sua situação particular.</p>
+                    <a href="https://wa.me/351919086529" target="_blank" rel="noreferrer">Saber mais</a>
+                </article>
+                <article class="service-card">
+                    <div class="service-card__icon">💧</div>
+                    <h2>Aromaterapia</h2>
+                    <p>Óleos essenciais terapêuticos selecionados cuidadosamente para o seu equilíbrio físico e emocional.</p>
+                    <a href="https://wa.me/351919086529" target="_blank" rel="noreferrer">Saber mais</a>
+                </article>
+                <article class="service-card">
+                    <div class="service-card__icon">🥗</div>
+                    <h2>Nutrição Natural</h2>
+                    <p>Orientação alimentar focada em alimentos integrais, naturais e suplementação complementar de qualidade.</p>
+                    <a href="https://wa.me/351919086529" target="_blank" rel="noreferrer">Saber mais</a>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Marque a sua consulta</h2>
+            <p>O nosso aconselhamento especializado está à sua distância. Contacte-nos e comece a sua jornada de bem-estar natural.</p>
+            <a href="https://wa.me/351919086529" target="_blank" rel="noreferrer">Falar no WhatsApp</a>
+        </div>
+    </section>
+
+    <section class="store-info">
+        <div class="container">
+            <h2>Visite o nosso espaço</h2>
+            <p>R. Carlos J. Moreira 2420-115 Caranguejeira Loja 3</p>
+            <p>Telefone: 919 086 529</p>
+        </div>
+    </section>
+</main>
+
+<footer class="footer">
+    <div class="container footer-top">
+        <div>
+            <a href="/" class="footer-logo">Espaço Boa Saúde</a>
+            <p>Terapias naturais, aconselhamento e produtos selecionados para o seu bem-estar.</p>
+        </div>
+        <div>
+            <h2>Contactos</h2>
+            <p>R. Carlos J. Moreira 2420-115 Caranguejeira Loja 3</p>
+            <p>919 086 529</p>
+        </div>
+        <div>
+            <h2>Pagamentos</h2>
+            <p>PayPal</p>
+            <p>MB Way</p>
+            <p>Transferência</p>
+        </div>
+        <div>
+            <h2>Redes</h2>
+            <a href="https://www.facebook.com/boasaudeervanaria/" target="_blank" rel="noreferrer" aria-label="Facebook">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.55 9.88v-6.99H7.9V12h2.55V9.8c0-2.52 1.5-3.91 3.8-3.91 1.1 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.62.77-1.62 1.56V12h2.76l-.44 2.89h-2.32v6.99A10 10 0 0 0 22 12z"/></svg>
+            </a>
+            <a href="https://wa.me/351919086529" target="_blank" rel="noreferrer" aria-label="WhatsApp">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2a9.96 9.96 0 0 0-8.6 14.98L2 22l5.18-1.36A10 10 0 1 0 12.04 2zm5.8 14.2c-.25.7-1.4 1.3-1.9 1.36-.5.06-1.16.09-1.88-.13-.44-.14-1-.33-1.72-.63-3.02-1.3-4.99-4.32-5.14-4.52-.14-.2-1.23-1.64-1.23-3.13s.78-2.21 1.06-2.52c.27-.31.6-.39.8-.39h.58c.18 0 .42-.07.66.5.25.6.86 2.08.94 2.23.08.16.13.34.03.55-.1.2-.15.34-.3.52-.15.17-.32.38-.46.51-.15.16-.31.33-.13.65.18.31.8 1.32 1.72 2.14 1.18 1.05 2.17 1.38 2.48 1.53.31.16.5.13.69-.08.2-.22.84-.97 1.07-1.31.22-.35.45-.29.76-.18.31.1 1.97.93 2.3 1.1.34.18.56.26.64.41.07.16.07.89-.18 1.59z"/></svg>
+            </a>
+        </div>
+    </div>
+</footer>
+
+<a href="https://wa.me/351919086529" class="whatsapp-float" target="_blank" rel="noreferrer" aria-label="Contactar por WhatsApp">WhatsApp</a>
+
+<div class="cookie-banner">
+    <div class="cookie-banner-content">
+        <p>Utilizamos cookies para melhorar a sua experiência no nosso site. Ao continuar a navegar, concorda com a nossa política de privacidade.</p>
+        <div class="cookie-banner-actions">
+            <button class="btn btn--outline cookie-banner-reject">Rejeitar</button>
+            <button class="btn btn--primary cookie-banner-accept">Aceitar</button>
+        </div>
+    </div>
+</div>
+
+<script src="../js/app.js"></script>
+<script src="../js/cart.js"></script>
+</body>
+</html>

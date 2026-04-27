@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Nós | Espaço Boa Saúde</title>
+    <meta name="description" content="Espaço Boa Saúde é uma ervanária em Caranguejeira dedicada ao bem-estar holístico, terapias naturais e suplementos.">
+    <link rel="icon" href="data:," type="image/x-icon">
+    <link rel="stylesheet" href="../css/design-system.css">
+    <style>
+        .about-hero {
+            background-color: var(--c-primary);
+            color: #fff;
+            padding: 7.5rem 1.25rem 5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-hero::before {
+            content: "";
+            position: absolute;
+            inset: -50% auto auto -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .about-hero-inner,
+        .section-inner,
+        .footer-inner,
+        .cookie-inner,
+        .mobile-nav__panel,
+        .cart-drawer__panel {
+            width: min(1200px, calc(100% - 2.5rem));
+            margin: 0 auto;
+        }
+
+        .about-hero-inner {
+            position: relative;
+            z-index: 1;
+            max-width: 52rem;
+        }
+
+        .about-hero h1,
+        .section-title,
+        .visit-title {
+            font-family: var(--f-display);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        .about-hero h1 {
+            margin: 0 0 1rem;
+            font-size: clamp(3rem, 7vw, 5rem);
+        }
+
+        .about-hero p {
+            margin: 0;
+            font-family: var(--f-body);
+            font-size: 1.125rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.82);
+        }
+
+        .section-block {
+            padding: 5rem 1.25rem;
+            background: var(--c-bg);
+        }
+
+        .section-block--alt {
+            background: #fff;
+        }
+
+        .about-grid {
+            display: grid;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .about-grid {
+                grid-template-columns: 1.1fr 0.9fr;
+            }
+        }
+
+        .section-title {
+            margin: 0 0 1.75rem;
+            font-size: clamp(2rem, 4vw, 3.25rem);
+            color: var(--c-primary);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -0.65rem;
+            width: 4.5rem;
+            height: 2px;
+            background: var(--c-accent);
+        }
+
+        .about-copy {
+            font-family: var(--f-body);
+            color: var(--c-muted);
+            font-size: 1.0625rem;
+            line-height: 1.85;
+        }
+
+        .about-copy p {
+            margin: 0 0 1rem;
+        }
+
+        .about-copy--center {
+            text-align: center;
+            max-width: 50rem;
+            margin: 0 auto 2.5rem;
+        }
+
+        .about-visual {
+            min-height: 22rem;
+            border-radius: 1rem;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--c-primary), color-mix(in srgb, var(--c-primary) 70%, #fff 30%));
+            color: #fff;
+            display: grid;
+            place-items: center;
+            padding: 2rem;
+            box-shadow: 0 1.25rem 2.5rem rgba(45, 74, 62, 0.12);
+            text-align: center;
+        }
+
+        .about-visual-label {
+            font-family: var(--f-display);
+            font-size: clamp(1.75rem, 3vw, 2.5rem);
+        }
+
+        .about-visual-sub {
+            margin-top: 0.75rem;
+            font-family: var(--f-body);
+            color: rgba(255, 255, 255, 0.78);
+        }
+
+        .values-grid {
+            display: grid;
+            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+        }
+
+        .value-card {
+            background: #fff;
+            padding: 2rem 1.5rem;
+            border-radius: 1rem;
+            border-bottom: 3px solid transparent;
+            text-align: center;
+            box-shadow: 0 0.75rem 1.875rem rgba(45, 74, 62, 0.06);
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+        }
+
+        .value-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 1rem 2.25rem rgba(45, 74, 62, 0.1);
+            border-bottom-color: var(--c-accent);
+        }
+
+        .value-card-icon {
+            width: 3.75rem;
+            height: 3.75rem;
+            margin: 0 auto 1rem;
+            border-radius: 999px;
+            display: grid;
+            place-items: center;
+            background: color-mix(in srgb, var(--c-primary) 10%, #fff 90%);
+            color: var(--c-primary);
+            font-family: var(--f-display);
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .value-card h3 {
+            margin: 0 0 0.75rem;
+            font-family: var(--f-display);
+            font-size: 1.5rem;
+            color: var(--c-primary);
+        }
+
+        .value-card p,
+        .brand-card,
+        .visit-item p,
+        .footer p,
+        .footer a,
+        .cookie-banner p {
+            font-family: var(--f-body);
+        }
+
+        .value-card p {
+            margin: 0;
+            color: var(--c-muted);
+            line-height: 1.7;
+        }
+
+        .brand-grid {
+            display: grid;
+            gap: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+        }
+
+        .brand-card {
+            display: grid;
+            place-items: center;
+            padding: 1.5rem;
+            min-height: 6rem;
+            border: 1px solid color-mix(in srgb, var(--c-primary) 12%, #fff 88%);
+            border-radius: 1rem;
+            background: var(--c-bg);
+            color: var(--c-primary);
+            text-decoration: none;
+            font-size: 1.25rem;
+            font-weight: 600;
+            transition: transform 0.25s ease, background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+        }
+
+        .brand-card:hover {
+            transform: translateY(-3px);
+            background: var(--c-primary);
+            color: #fff;
+            border-color: var(--c-primary);
+        }
+
+        .visit-section {
+            background: var(--c-primary);
+            color: #fff;
+            padding: 5.5rem 1.25rem;
+            text-align: center;
+        }
+
+        .visit-section .section-inner {
+            max-width: 60rem;
+        }
+
+        .visit-title {
+            margin: 0 0 2rem;
+            font-size: clamp(2rem, 4vw, 3.25rem);
+        }
+
+        .visit-grid {
+            display: grid;
+            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+            margin-bottom: 2.5rem;
+        }
+
+        .visit-item h3 {
+            margin: 0 0 0.75rem;
+            font-family: var(--f-body);
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: rgba(255, 255, 255, 0.72);
+        }
+
+        .visit-item p {
+            margin: 0;
+            font-family: var(--f-display);
+            font-size: 1.4rem;
+            line-height: 1.45;
+            color: #fff;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.95rem 1.6rem;
+            border-radius: 999px;
+            background: var(--c-accent);
+            color: #fff;
+            font-family: var(--f-body);
+            font-weight: 700;
+            text-decoration: none;
+            transition: transform 0.2s ease, filter 0.2s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            filter: brightness(0.95);
+        }
+
+        .header,
+        .footer {
+            background: #fff;
+        }
+
+        .footer {
+            border-top: 1px solid color-mix(in srgb, var(--c-primary) 10%, #fff 90%);
+            padding: 3rem 1.25rem 1.5rem;
+        }
+
+        .footer-inner {
+            display: grid;
+            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+        }
+
+        .footer-brand a,
+        .footer h3 {
+            color: var(--c-primary);
+        }
+
+        .footer h3 {
+            margin: 0 0 0.9rem;
+            font-family: var(--f-display);
+            font-size: 1.35rem;
+        }
+
+        .footer a {
+            color: var(--c-muted);
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: var(--c-accent);
+        }
+
+        .footer-links,
+        .footer-social,
+        .footer-payments {
+            display: flex;
+            gap: 0.9rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .footer-bottom {
+            width: min(1200px, calc(100% - 2.5rem));
+            margin: 2rem auto 0;
+            padding-top: 1.25rem;
+            border-top: 1px solid color-mix(in srgb, var(--c-primary) 10%, #fff 90%);
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--c-muted);
+            font-family: var(--f-body);
+            font-size: 0.95rem;
+        }
+
+        .social-link,
+        .icon-btn,
+        .whatsapp-btn,
+        .cookie-banner-button,
+        .mobile-nav-close,
+        .cart-slideout-close {
+            border: 0;
+            background: none;
+            cursor: pointer;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            color: var(--c-primary);
+        }
+
+        .social-link svg,
+        .icon-btn svg,
+        .whatsapp-float svg {
+            display: block;
+        }
+
+        .mobile-nav,
+        .cart-slideout,
+        .cookie-banner {
+            position: fixed;
+            inset: 0;
+            z-index: 60;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.25s ease;
+        }
+
+        .mobile-nav.is-open,
+        .cart-slideout.is-open,
+        .cookie-banner.is-visible {
+            pointer-events: auto;
+            opacity: 1;
+        }
+
+        .mobile-nav-overlay,
+        .cart-slideout-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(17, 24, 39, 0.5);
+        }
+
+        .mobile-nav-panel,
+        .cart-slideout-panel {
+            position: relative;
+            z-index: 1;
+            background: #fff;
+            min-height: 100%;
+            max-width: 34rem;
+            margin-left: auto;
+            padding: 1.25rem;
+            box-shadow: -1rem 0 2rem rgba(0, 0, 0, 0.12);
+            transform: translateX(100%);
+            transition: transform 0.25s ease;
+        }
+
+        .mobile-nav.is-open .mobile-nav-panel,
+        .cart-slideout.is-open .cart-slideout-panel {
+            transform: translateX(0);
+        }
+
+        .mobile-nav-header,
+        .cart-slideout-header,
+        .cart-slideout-footer,
+        .cart-slideout-line,
+        .cookie-banner-actions {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .mobile-nav-header,
+        .cart-slideout-header {
+            margin-bottom: 1.25rem;
+        }
+
+        .mobile-nav-links,
+        .cart-slideout-items {
+            display: grid;
+            gap: 0.9rem;
+        }
+
+        .mobile-nav-links a {
+            color: var(--c-primary);
+            text-decoration: none;
+            font-family: var(--f-body);
+            font-weight: 600;
+            font-size: 1.05rem;
+        }
+
+        .cart-slideout-items {
+            margin: 1rem 0 1.25rem;
+        }
+
+        .cart-slideout-empty {
+            color: var(--c-muted);
+            font-family: var(--f-body);
+        }
+
+        .cart-slideout-footer {
+            padding-top: 1rem;
+            border-top: 1px solid color-mix(in srgb, var(--c-primary) 10%, #fff 90%);
+        }
+
+        .cookie-banner {
+            inset: auto 1rem 1rem 1rem;
+        }
+
+        .cookie-banner-panel {
+            width: min(1200px, 100%);
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 1rem;
+            padding: 1rem 1.25rem;
+            box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.12);
+        }
+
+        .cookie-banner p {
+            margin: 0;
+            color: var(--c-muted);
+            line-height: 1.6;
+        }
+
+        .cookie-banner a {
+            color: var(--c-accent);
+        }
+
+        .button,
+        .cookie-banner-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 999px;
+            padding: 0.8rem 1.2rem;
+            font-family: var(--f-body);
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .button--primary,
+        .cookie-banner-button--accept {
+            background: var(--c-primary);
+            color: #fff;
+        }
+
+        .button--secondary,
+        .cookie-banner-button--reject {
+            background: color-mix(in srgb, var(--c-primary) 8%, #fff 92%);
+            color: var(--c-primary);
+        }
+
+        .whatsapp-btn {
+            position: fixed;
+            right: 1rem;
+            bottom: 1rem;
+            width: 3.5rem;
+            height: 3.5rem;
+            border-radius: 999px;
+            display: grid;
+            place-items: center;
+            background: #25d366;
+            color: #fff;
+            box-shadow: 0 0.75rem 1.5rem rgba(37, 211, 102, 0.25);
+            z-index: 50;
+        }
+
+        @media (max-width: 767px) {
+            .header-nav {
+                display: none;
+            }
+
+            .footer-bottom {
+                justify-content: center;
+                text-align: center;
+            }
+
+            .cookie-banner {
+                inset: auto 0 0 0;
+            }
+
+            .cookie-banner-panel {
+                border-radius: 1rem 1rem 0 0;
+            }
+        }
+    </style>
+</head>
+<body>
+<header class="header">
+    <div class="container">
+        <div class="header-logo"><a href="/">Espaço Boa Saúde<span class="tagline">Terapias Naturais</span></a></div>
+        <nav class="header-nav"><a href="/#marcas">Marcas</a><a href="/#produtos">Produtos</a><a href="/pages/servicos.html">Serviços</a><a href="/pages/blog.html">Blog</a><a href="/pages/sobre.html">Sobre Nós</a></nav>
+        <div class="header-actions">
+            <button class="icon-btn search-toggle" aria-label="Procurar"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button>
+            <a href="/pages/login.html" class="icon-btn" aria-label="Conta"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a>
+            <button class="icon-btn cart-btn" aria-label="Carrinho"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><span class="cart-count">0</span></button>
+            <button class="hamburger-btn" aria-label="Menu"><span></span><span></span><span></span></button>
+        </div>
+    </div>
+</header>
+
+<div class="mobile-nav" aria-hidden="true">
+        <div class="mobile-nav-overlay"></div>
+        <aside class="mobile-nav-panel" aria-label="Menu móvel">
+        <div class="mobile-nav-header">
+            <strong>Menu</strong>
+            <button class="mobile-nav-close" aria-label="Fechar menu">✕</button>
+        </div>
+        <nav class="mobile-nav-links">
+            <a href="/#marcas">Marcas</a>
+            <a href="/#produtos">Produtos</a>
+            <a href="/pages/servicos.html">Serviços</a>
+            <a href="/pages/blog.html">Blog</a>
+            <a href="/pages/sobre.html">Sobre Nós</a>
+        </nav>
+    </aside>
+</div>
+
+<div class="cart-slideout" aria-hidden="true">
+    <div class="cart-slideout-overlay"></div>
+    <aside class="cart-slideout-panel" aria-label="Carrinho de compras">
+        <div class="cart-slideout-header">
+            <strong>O seu carrinho</strong>
+            <button class="cart-slideout-close" aria-label="Fechar carrinho">✕</button>
+        </div>
+        <div class="cart-slideout-items">
+            <p class="cart-slideout-empty">O carrinho está vazio.</p>
+        </div>
+        <div class="cart-slideout-footer">
+            <div class="cart-slideout-line">
+                <span>Total</span>
+                <strong>0,00 €</strong>
+            </div>
+            <button class="button button--primary cart-slideout-checkout">Finalizar Compra</button>
+        </div>
+    </aside>
+</div>
+
+<main>
+    <section class="about-hero">
+        <div class="about-hero-inner">
+            <h1>Sobre Nós</h1>
+            <p>O seu espaço de terapias e saúde natural no coração da Caranguejeira.</p>
+        </div>
+    </section>
+
+    <section class="section-block">
+        <div class="section-inner about-grid">
+            <div>
+                <h2 class="section-title">A Nossa História</h2>
+                <div class="about-copy">
+                    <p>O Espaço Boa Saúde nasceu de uma paixão profunda pelo bem-estar e pelas curas naturais. Situada na Caranguejeira (Leiria), a nossa loja é muito mais do que uma ervanária: é um refúgio dedicado à saúde holística do corpo e da mente.</p>
+                    <p>Acreditamos que cada pessoa é única e merece uma abordagem cuidadosa. Por isso, oferecemos um aconselhamento personalizado em suplementação natural, trabalhando com 4 marcas premium criteriosamente selecionadas para garantir a máxima pureza e eficácia nos resultados.</p>
+                </div>
+            </div>
+            <div class="about-visual" aria-label="Espaço Boa Saúde">
+                <div>
+                    <div class="about-visual-label">Espaço Boa Saúde</div>
+                    <div class="about-visual-sub">Terapias naturais • bem-estar • aconselhamento personalizado</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-block section-block--alt">
+        <div class="section-inner">
+            <h2 class="section-title">Missão &amp; Valores</h2>
+            <div class="about-copy about-copy--center">
+                <p><strong>A Nossa Missão:</strong> Promover a saúde natural, disponibilizar produtos de altíssima qualidade e oferecer uma consulta e aconselhamento personalizados para cada cliente que nos visita.</p>
+            </div>
+
+            <div class="values-grid">
+                <article class="value-card">
+                    <div class="value-card-icon">Q</div>
+                    <h3>Qualidade</h3>
+                    <p>Selecionamos apenas suplementos e marcas que cumprem os mais rigorosos padrões de excelência.</p>
+                </article>
+                <article class="value-card">
+                    <div class="value-card-icon">N</div>
+                    <h3>Natureza</h3>
+                    <p>Respeitamos o poder curativo das plantas e dos elementos naturais em todas as nossas abordagens.</p>
+                </article>
+                <article class="value-card">
+                    <div class="value-card-icon">C</div>
+                    <h3>Confiança</h3>
+                    <p>Construímos relações duradouras, baseadas na transparência e no respeito pelo seu bem-estar.</p>
+                </article>
+                <article class="value-card">
+                    <div class="value-card-icon">A</div>
+                    <h3>Aconselhamento Personalizado</h3>
+                    <p>Cada indicação é pensada para si, respondendo às suas necessidades específicas de saúde.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-block">
+        <div class="section-inner">
+            <h2 class="section-title">As Nossas Marcas Premium</h2>
+            <div class="about-copy about-copy--center">
+                <p>Trabalhamos com marcas exclusivas que garantem os melhores extratos, vitaminas e oligoelementos.</p>
+            </div>
+            <div class="brand-grid" id="marcas">
+                <a href="/pages/marca-doctor.html" class="brand-card">Doctor Compositus</a>
+                <a href="/pages/marca-ghf.html" class="brand-card">GHF</a>
+                <a href="/pages/marca-natura.html" class="brand-card">Natura House</a>
+                <a href="/pages/marca-oboligo.html" class="brand-card">Oboligo</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="visit-section">
+        <div class="section-inner">
+            <h2 class="visit-title">Visite-nos</h2>
+            <div class="visit-grid">
+                <div class="visit-item">
+                    <h3>Morada</h3>
+                    <p>R. Carlos J. Moreira,<br>2420-115 Caranguejeira, Loja 3</p>
+                </div>
+                <div class="visit-item">
+                    <h3>Horário</h3>
+                    <p>Segunda a Sábado<br>10:00 - 19:00</p>
+                </div>
+                <div class="visit-item">
+                    <h3>Contacto</h3>
+                    <p>919 086 529</p>
+                </div>
+            </div>
+            <a class="cta-button" href="https://wa.me/351919086529" target="_blank" rel="noopener noreferrer">Fale connosco no WhatsApp</a>
+        </div>
+    </section>
+</main>
+
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <h3>Espaço Boa Saúde</h3>
+            <p>Saúde natural, terapias e aconselhamento especializado em Caranguejeira.</p>
+        </div>
+        <div>
+            <h3>Contacto</h3>
+            <p>R. Carlos J. Moreira, 2420-115 Caranguejeira, Loja 3</p>
+            <p>919 086 529</p>
+        </div>
+        <div>
+            <h3>Marcas</h3>
+            <ul class="footer-links">
+                <li><a href="/pages/marca-doctor.html">Doctor Compositus</a></li>
+                <li><a href="/pages/marca-ghf.html">GHF</a></li>
+                <li><a href="/pages/marca-natura.html">Natura House</a></li>
+                <li><a href="/pages/marca-oboligo.html">Oboligo</a></li>
+            </ul>
+        </div>
+        <div>
+            <h3>Pagamentos</h3>
+            <div class="footer-payments">
+                <span>PayPal</span>
+                <span>MB Way</span>
+                <span>Transferência</span>
+            </div>
+        </div>
+        <div>
+            <h3>Social</h3>
+            <div class="footer-social">
+                <a class="social-link" href="https://www.facebook.com/boasaudeervanaria/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7h-2.4V12h2.4V9.8c0-2.4 1.4-3.7 3.5-3.7.9 0 1.8.1 2.1.1v2.5H15c-1.2 0-1.4.6-1.4 1.4V12h3l-.4 2.9h-2.6v7A10 10 0 0 0 22 12Z"/></svg><span>Facebook</span></a>
+                <a class="social-link" href="https://wa.me/351919086529" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5A11.9 11.9 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.6 4.1 1.7 5.9L0 24l6.5-2a12 12 0 0 0 5.6 1.4h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.1-1.2-6-3.5-8.1ZM12.1 21.4h-.1a10 10 0 0 1-5.1-1.4l-.4-.2-3.8 1.2 1.2-3.7-.2-.4A10 10 0 1 1 12.1 21.4Zm5.8-7.9c-.3-.2-1.7-.8-2-.9-.3-.1-.5-.2-.7.2-.2.3-.8.9-1 .1-.1-.3-.4-.6-.6-.8-.2-.2-.4-.2-.6-.1-.2.1-.4.1-.6.4-.2.2-.6.6-.7.8-.2.2-.4.2-.7.1-1.1-.4-2-1.3-2.8-2.3-.3-.3 0-.5.2-.7.2-.2.4-.5.6-.8.2-.2.1-.4 0-.6-.1-.2-.7-1.7-1-2.3-.3-.6-.6-.5-.7-.5h-.6c-.2 0-.5.1-.7.4-.2.3-.8.8-.8 2s.8 2.4.9 2.6c.1.2 1.7 2.7 4.1 3.7 2.3 1 2.3.7 2.7.6.4 0 1.7-.7 1.9-1.3.2-.6.2-1.2.1-1.3-.1-.1-.3-.2-.6-.4Z"/></svg><span>WhatsApp</span></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2026 Espaço Boa Saúde. Todos os direitos reservados.</p>
+        <p><a href="https://www.livroreclamacoes.pt" target="_blank" rel="noopener noreferrer">Livro de Reclamações</a></p>
+    </div>
+</footer>
+
+<a class="whatsapp-btn" href="https://wa.me/351919086529" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5A11.9 11.9 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.6 4.1 1.7 5.9L0 24l6.5-2a12 12 0 0 0 5.6 1.4h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.1-1.2-6-3.5-8.1Z"/></svg>
+</a>
+
+<div class="cookie-banner is-visible" role="dialog" aria-live="polite" aria-label="Aviso de cookies">
+    <div class="cookie-banner-panel cookie-inner">
+        <p>Utilizamos cookies para melhorar a sua experiência no nosso site. Ao continuar a navegar, concorda com a nossa <a href="/pages/privacidade.html">Política de Privacidade</a>.</p>
+        <div class="cookie-banner-actions">
+            <button class="cookie-banner-button cookie-banner-button--reject button--secondary">Rejeitar</button>
+            <button class="cookie-banner-button cookie-banner-button--accept button--primary">Aceitar</button>
+        </div>
+    </div>
+</div>
+
+<script src="../js/app.js"></script>
+<script src="../js/cart.js"></script>
+</body>
+</html>

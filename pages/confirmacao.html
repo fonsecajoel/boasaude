@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encomenda Confirmada | Espaço Boa Saúde</title>
+    <meta name="description" content="A sua encomenda no Espaço Boa Saúde foi confirmada com sucesso.">
+    <link rel="icon" href="data:," type="image/x-icon">
+    <link rel="stylesheet" href="../css/design-system.css">
+    <style>
+        .confirmation-page { background: var(--c-bg); padding: 4rem 1rem; min-height: 60vh; }
+        .confirmation-container { max-width: 800px; margin: 0 auto; background: var(--c-surface); padding: 3rem; border-radius: var(--r-md); box-shadow: var(--shadow-md); text-align: center; }
+        .confirmation-icon { width: 80px; height: 80px; margin: 0 auto 1.5rem; color: var(--c-primary); animation: scaleIn 0.5s ease-out; }
+        @keyframes scaleIn { 0% { transform: scale(0); opacity: 0; } 80% { transform: scale(1.1); } 100% { transform: scale(1); } }
+        .confirmation-title { font-family: var(--f-display); color: var(--c-primary); font-size: 2.5rem; margin-bottom: .5rem; }
+        .confirmation-subtitle { color: var(--c-muted); font-size: 1.1rem; margin-bottom: 2.5rem; }
+        .order-info-box { text-align: left; margin-bottom: 2.5rem; border-top: 1px solid var(--c-border); border-bottom: 1px solid var(--c-border); padding: 1.5rem 0; }
+        .order-info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem; }
+        .order-info-item h4 { font-size: .9rem; color: var(--c-muted); text-transform: uppercase; letter-spacing: .05em; margin-bottom: .5rem; }
+        .order-info-item p { font-size: 1.1rem; color: var(--c-text); font-weight: 500; }
+        .order-summary { width: 100%; border-collapse: collapse; text-align: left; margin-bottom: 1.5rem; }
+        .order-summary th { padding: 1rem 0; border-bottom: 2px solid var(--c-border); color: var(--c-muted); font-weight: 500; }
+        .order-summary td { padding: 1rem 0; border-bottom: 1px solid var(--c-border); }
+        .order-summary td:last-child, .order-summary th:last-child { text-align: right; }
+        .order-totals { width: 100%; max-width: 300px; margin-left: auto; border-collapse: collapse; }
+        .order-totals td { padding: .5rem 0; text-align: right; }
+        .order-totals td:first-child { color: var(--c-muted); padding-right: 1.5rem; }
+        .order-total-row td { font-weight: 700; font-size: 1.2rem; color: var(--c-primary); border-top: 2px solid var(--c-border); padding-top: 1rem; }
+        .confirmation-note { font-size: .95rem; color: var(--c-muted); margin-bottom: 2.5rem; font-style: italic; }
+        .confirmation-actions { display: flex; gap: 1rem; justify-content: center; }
+        .confirmation-actions .btn { min-width: 200px; }
+        #no-order-container { display: none; }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-logo"><a href="/">Espaço Boa Saúde<span class="tagline">Terapias Naturais</span></a></div>
+            <nav class="header-nav">
+                <a href="/#marcas">Marcas</a><a href="/#produtos">Produtos</a><a href="/pages/servicos.html">Serviços</a><a href="/pages/blog.html">Blog</a><a href="/pages/sobre.html">Sobre Nós</a>
+            </nav>
+            <div class="header-actions">
+                <button class="icon-btn search-toggle" aria-label="Procurar"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button>
+                <a href="/pages/login.html" class="icon-btn" aria-label="Conta"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a>
+                <button class="icon-btn cart-btn" aria-label="Carrinho"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><span class="cart-count">0</span></button>
+                <button class="hamburger-btn" aria-label="Menu"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </header>
+
+    <div class="mobile-nav-overlay"></div>
+    <nav class="mobile-nav">
+        <button class="mobile-nav-close" aria-label="Fechar menu"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+        <div class="mobile-nav-links"><a href="/#marcas">Marcas</a><a href="/#produtos">Produtos</a><a href="/pages/servicos.html">Serviços</a><a href="/pages/blog.html">Blog</a><a href="/pages/sobre.html">Sobre Nós</a><a href="/pages/login.html">A Minha Conta</a></div>
+        <div class="mobile-nav-contact"><p>Precisa de ajuda?</p><a href="tel:+351919086529">919 086 529</a></div>
+    </nav>
+
+    <div class="cart-overlay"></div>
+    <div class="cart-slideout"><div class="cart-header"><h2>O Seu Carrinho</h2><button class="cart-close-btn" aria-label="Fechar carrinho"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div><div class="cart-items"></div><div class="cart-subtotal"></div></div>
+
+    <main class="confirmation-page">
+        <div class="container">
+            <div class="confirmation-container" id="order-details-container">
+                <svg class="confirmation-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+
+                <h1 class="confirmation-title">Encomenda Confirmada!</h1>
+                <p class="confirmation-subtitle">Obrigado pela sua compra. O seu pedido foi recebido com sucesso.</p>
+
+                <div class="order-info-box">
+                    <div class="order-info-grid">
+                        <div class="order-info-item">
+                            <h4>Nº Encomenda</h4>
+                            <p id="order-number">-</p>
+                        </div>
+                        <div class="order-info-item">
+                            <h4>Método de Pagamento</h4>
+                            <p id="order-payment">-</p>
+                        </div>
+                        <div class="order-info-item">
+                            <h4>Morada de Envio</h4>
+                            <p id="order-address">-</p>
+                        </div>
+                    </div>
+
+                    <table class="order-summary">
+                        <thead>
+                            <tr>
+                                <th>Produto</th>
+                                <th>Qtd</th>
+                                <th>Preço Unit.</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody id="order-items-body"></tbody>
+                    </table>
+
+                    <table class="order-totals">
+                        <tbody>
+                            <tr>
+                                <td>Subtotal:</td>
+                                <td id="order-subtotal">0,00 €</td>
+                            </tr>
+                            <tr>
+                                <td>Portes de Envio:</td>
+                                <td id="order-shipping">0,00 €</td>
+                            </tr>
+                            <tr id="order-discount-row" style="display: none;">
+                                <td>Desconto:</td>
+                                <td id="order-discount">0,00 €</td>
+                            </tr>
+                            <tr class="order-total-row">
+                                <td>Total:</td>
+                                <td id="order-total">0,00 €</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p class="confirmation-note">Uma confirmação foi enviada para o seu email (<span id="order-email">-</span>).</p>
+
+                <div class="confirmation-actions">
+                    <button class="btn btn-outline" disabled>Acompanhar Encomenda</button>
+                    <a href="/" class="btn btn-primary">Continuar a Comprar</a>
+                </div>
+            </div>
+
+            <div class="confirmation-container" id="no-order-container">
+                <h1 class="confirmation-title">Nenhuma encomenda encontrada</h1>
+                <p class="confirmation-subtitle">Parece que não tem nenhuma encomenda recente ou a sua sessão expirou.</p>
+                <div class="confirmation-actions">
+                    <a href="/" class="btn btn-primary">Voltar à Página Inicial</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer"><div class="container"><div class="footer-grid">
+<div><div class="footer-logo">Espaço Boa Saúde<span class="tagline">Terapias Naturais</span></div><address><p>R. Carlos J. Moreira, 2420-115<br>Caranguejeira, Loja 3</p><p>919 086 529</p><p>Seg–Sáb: 10:00–19:00</p></address></div>
+<div><h4>Marcas</h4><ul><li><a href="/pages/marca-doctor.html">Doctor Compositus</a></li><li><a href="/pages/marca-ghf.html">GHF</a></li><li><a href="/pages/marca-natura.html">Natura House</a></li><li><a href="/pages/marca-oboligo.html">Oboligo</a></li></ul></div>
+<div><h4>Informação</h4><ul><li><a href="/pages/sobre.html">Sobre Nós</a></li><li><a href="/pages/blog.html">Blog</a></li><li><a href="/pages/servicos.html">Serviços</a></li></ul></div>
+<div><h4>Legal</h4><ul><li><a href="/pages/privacidade.html">Política de Privacidade</a></li><li><a href="/pages/termos.html">Termos e Condições</a></li><li><a href="/pages/devolucoes.html">Política de Devoluções</a></li><li><a href="https://www.livroreclamacoes.pt" target="_blank" rel="noopener">Livro de Reclamações</a></li></ul></div>
+</div><div class="footer-bottom">
+<div class="footer-social"><a href="https://www.facebook.com/boasaudeervanaria/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a><a href="https://wa.me/351919086529" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></a></div>
+<div class="footer-payments"><span class="payment-badge">PayPal</span><span class="payment-badge">MB Way</span><span class="payment-badge">Transferência</span></div>
+<p>© 2025 Espaço Boa Saúde. Todos os direitos reservados.</p>
+</div></div></footer>
+
+    <a class="whatsapp-float" href="https://wa.me/351919086529" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+    </a>
+
+    <div class="cookie-banner">
+        <div class="cookie-banner__content">
+            <p>Utilizamos cookies para melhorar a sua experiência no nosso site. Ao continuar a navegar, concorda com a nossa <a href="/pages/privacidade.html">Política de Cookies</a>.</p>
+            <div class="cookie-banner__actions">
+                <button class="btn btn-outline cookie-banner__reject">Rejeitar</button>
+                <button class="btn btn-primary cookie-banner__accept">Aceitar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/app.js"></script>
+    <script src="../js/cart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var lastOrderStr = localStorage.getItem('lastOrder');
+            var container = document.getElementById('order-details-container');
+            var emptyContainer = document.getElementById('no-order-container');
+            
+            if (!lastOrderStr) {
+                container.style.display = 'none';
+                emptyContainer.style.display = 'block';
+                return;
+            }
+            
+            try {
+                var order = JSON.parse(lastOrderStr);
+                
+                var orderId = order.orderId;
+                if (!orderId) {
+                    orderId = 'BS-' + new Date().getTime();
+                }
+                
+                document.getElementById('order-number').textContent = orderId;
+                
+                // checkout.js stores customer data in nested objects
+                var customerEmail = '';
+                var customerName = '';
+                if (order.customer) {
+                    customerEmail = order.customer.email || '';
+                    customerName = order.customer.nome || '';
+                }
+                document.getElementById('order-email').textContent = customerEmail;
+                
+                // Build full address from shippingAddress object
+                var fullAddress = '';
+                if (order.shippingAddress) {
+                    var parts = [];
+                    if (order.shippingAddress.morada) parts.push(order.shippingAddress.morada);
+                    if (order.shippingAddress.codigoPostal) parts.push(order.shippingAddress.codigoPostal);
+                    if (order.shippingAddress.localidade) parts.push(order.shippingAddress.localidade);
+                    if (order.shippingAddress.distrito) parts.push(order.shippingAddress.distrito);
+                    fullAddress = parts.join(', ');
+                }
+                document.getElementById('order-address').textContent = fullAddress;
+                document.getElementById('order-payment').textContent = order.paymentMethod || '';
+                
+                var tbody = document.getElementById('order-items-body');
+                var itemsHtml = '';
+                
+                if (order.items && order.items.length) {
+                    for (var i = 0; i < order.items.length; i++) {
+                        var item = order.items[i];
+                        var price = item.price || 0;
+                        var qty = item.quantity || 1;
+                        var lineTotal = price * qty;
+                        
+                        itemsHtml += '<tr>';
+                        itemsHtml += '<td>' + (item.name || 'Produto') + '</td>';
+                        itemsHtml += '<td>' + qty + '</td>';
+                        itemsHtml += '<td>' + price.toFixed(2) + ' €</td>';
+                        itemsHtml += '<td>' + lineTotal.toFixed(2) + ' €</td>';
+                        itemsHtml += '</tr>';
+                    }
+                }
+                
+                tbody.innerHTML = itemsHtml;
+                
+                var subtotal = order.subtotal || 0;
+                var shipping = order.shipping || 0;
+                var discount = order.discount || 0;
+                var total = order.total || 0;
+                
+                document.getElementById('order-subtotal').textContent = subtotal.toFixed(2) + ' €';
+                document.getElementById('order-shipping').textContent = shipping.toFixed(2) + ' €';
+                
+                if (discount > 0) {
+                    document.getElementById('order-discount-row').style.display = 'table-row';
+                    document.getElementById('order-discount').textContent = '-' + discount.toFixed(2) + ' €';
+                }
+                
+                document.getElementById('order-total').textContent = total.toFixed(2) + ' €';
+                
+                // Limpar o carrinho após a encomenda
+                localStorage.removeItem('boaSaudeCart');
+                
+                // Actualizar o icone do carrinho na interface
+                var cartCountElements = document.querySelectorAll('.cart-count');
+                for (var j = 0; j < cartCountElements.length; j++) {
+                    cartCountElements[j].textContent = '0';
+                }
+            } catch (e) {
+                console.error('Erro ao processar encomenda:', e);
+                container.style.display = 'none';
+                emptyContainer.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>

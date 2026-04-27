@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produto | Espaço Boa Saúde</title>
+    <meta name="description" content="Detalhes do produto na loja Espaço Boa Saúde.">
+    <link rel="icon" href="data:," type="image/x-icon">
+    <link rel="stylesheet" href="../css/design-system.css">
+    <style>
+        .product-detail-wrapper {
+            display: none;
+        }
+        .product-detail {
+            display: flex;
+            flex-direction: column;
+            gap: var(--s-12);
+            margin-top: var(--s-8);
+            margin-bottom: var(--s-16);
+        }
+        @media (min-width: 768px) {
+            .product-detail {
+                flex-direction: row;
+                align-items: stretch;
+            }
+        }
+        .product-detail-image {
+            flex: 1;
+            background-color: var(--c-bg);
+            border: 1px solid var(--c-border);
+            border-radius: var(--r-md);
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 400px;
+            padding: var(--s-8);
+        }
+        .product-detail-image img {
+            max-width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+        .product-detail-placeholder {
+            font-family: var(--f-display);
+            color: var(--c-primary);
+            font-size: 2.5rem;
+            opacity: 0.5;
+        }
+        .product-detail-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: var(--s-6);
+        }
+        .product-detail-brand {
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: var(--c-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .product-detail-title {
+            font-family: var(--f-display);
+            font-size: clamp(1.75rem, 3vw, 2.5rem);
+            color: var(--c-primary);
+            line-height: 1.2;
+            margin: 0;
+        }
+        .product-detail-price {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--c-primary);
+        }
+        .product-detail-desc {
+            color: var(--c-muted);
+            line-height: 1.6;
+            padding-bottom: var(--s-6);
+            border-bottom: 1px solid var(--c-border);
+        }
+        .product-detail-actions {
+            display: flex;
+            align-items: center;
+            gap: var(--s-4);
+            margin-top: var(--s-4);
+        }
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            border: 1px solid var(--c-border);
+            border-radius: var(--r-sm);
+            overflow: hidden;
+            height: 48px;
+        }
+        .quantity-selector button {
+            background: none;
+            border: none;
+            width: 40px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.25rem;
+            color: var(--c-primary);
+            transition: background-color 0.2s ease;
+        }
+        .quantity-selector button:hover {
+            background-color: var(--c-bg);
+        }
+        .quantity-selector input {
+            width: 50px;
+            height: 100%;
+            border: none;
+            border-left: 1px solid var(--c-border);
+            border-right: 1px solid var(--c-border);
+            text-align: center;
+            font-weight: 500;
+            color: var(--c-primary);
+            font-family: var(--f-body);
+            -moz-appearance: textfield;
+        }
+        .quantity-selector input::-webkit-outer-spin-button,
+        .quantity-selector input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        .product-detail-add-btn {
+            flex: 1;
+            height: 48px;
+            font-size: 1rem;
+        }
+        .related-products {
+            margin-bottom: var(--s-16);
+        }
+        .related-products-title {
+            font-family: var(--f-display);
+            font-size: clamp(1.5rem, 2.5vw, 2rem);
+            color: var(--c-primary);
+            margin-bottom: var(--s-8);
+            text-align: center;
+        }
+        #error-message {
+            text-align: center;
+            padding: 6rem 1rem;
+            display: none;
+        }
+        #error-message h2 {
+            font-family: var(--f-display);
+            font-size: 2.5rem;
+            color: var(--c-primary);
+            margin-bottom: var(--s-4);
+        }
+        #error-message p {
+            color: var(--c-muted);
+            margin-bottom: var(--s-8);
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <div class="header-logo">
+                <a href="/">
+                    Espaço Boa Saúde
+                    <span class="tagline">Terapias Naturais</span>
+                </a>
+            </div>
+            <nav class="header-nav">
+                <a href="#marcas">Marcas</a>
+                <a href="#produtos">Produtos</a>
+                <a href="/pages/servicos.html">Serviços</a>
+                <a href="/pages/blog.html">Blog</a>
+                <a href="/pages/sobre.html">Sobre Nós</a>
+            </nav>
+            <div class="header-actions">
+                <button class="icon-btn search-toggle" aria-label="Procurar">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                </button>
+                <a href="/pages/login.html" class="icon-btn" aria-label="Conta">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </a>
+                <button class="icon-btn cart-btn" aria-label="Carrinho">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                    <span class="cart-count">0</span>
+                </button>
+                <button class="hamburger-btn" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div id="error-message" class="container">
+            <h2>Produto não encontrado</h2>
+            <p>Lamentamos, mas não conseguimos encontrar o produto que procura.</p>
+            <a href="/" class="btn btn-primary">Voltar à Página Principal</a>
+        </div>
+
+        <div id="product-content" class="product-detail-wrapper">
+            <nav class="breadcrumbs">
+                <div class="container">
+                    <ol>
+                        <li><a href="/">Início</a></li>
+                        <li><a href="#" id="bc-brand">Marca</a></li>
+                        <li id="bc-name">Produto</li>
+                    </ol>
+                </div>
+            </nav>
+
+            <div class="container">
+                <div class="product-detail product-card" id="product-wrapper" data-product-id="" data-product-name="" data-product-brand="" data-product-price="" data-product-image="">
+                    <div class="product-detail-image" id="product-image-container">
+                        <div class="product-detail-placeholder" id="product-image-placeholder">Marca</div>
+                    </div>
+                    <div class="product-detail-info">
+                        <span class="product-detail-brand" id="product-brand">MARCA</span>
+                        <h1 class="product-detail-title" id="product-name">Nome do Produto</h1>
+                        <div class="product-detail-price" id="product-price">0,00 €</div>
+                        <p class="product-detail-desc" id="product-desc">Descrição do produto.</p>
+                        <div class="product-detail-actions">
+                            <div class="quantity-selector">
+                                <button type="button" onclick="changeQuantity(-1)" aria-label="Diminuir quantidade">-</button>
+                                <input type="number" id="product-qty" value="1" min="1" max="99" aria-label="Quantidade">
+                                <button type="button" onclick="changeQuantity(1)" aria-label="Aumentar quantidade">+</button>
+                            </div>
+                            <button class="btn btn-primary product-detail-add-btn add-to-cart" id="add-to-cart-btn" onclick="addCurrentToCart()">
+                                Adicionar ao Carrinho
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container related-products">
+                <h2 class="related-products-title">Produtos Relacionados</h2>
+                <div class="product-grid" id="related-products-grid"></div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-logo">
+                        Espaço Boa Saúde
+                        <span class="tagline">Terapias Naturais</span>
+                    </div>
+                    <address>
+                        <p>R. Carlos J. Moreira, 2420-115<br>Caranguejeira, Loja 3</p>
+                        <p>919 086 529</p>
+                        <p>Seg–Sáb: 10:00–19:00</p>
+                    </address>
+                </div>
+                <div>
+                    <h4>Marcas</h4>
+                    <ul>
+                        <li><a href="/pages/marca-doctor.html">Doctor Compositus</a></li>
+                        <li><a href="/pages/marca-ghf.html">GHF</a></li>
+                        <li><a href="/pages/marca-natura.html">Natura House</a></li>
+                        <li><a href="/pages/marca-oboligo.html">Oboligo</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Informação</h4>
+                    <ul>
+                        <li><a href="/pages/sobre.html">Sobre Nós</a></li>
+                        <li><a href="/pages/blog.html">Blog</a></li>
+                        <li><a href="/pages/servicos.html">Serviços</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="/pages/privacidade.html">Política de Privacidade</a></li>
+                        <li><a href="/pages/termos.html">Termos e Condições</a></li>
+                        <li><a href="/pages/devolucoes.html">Política de Devoluções</a></li>
+                        <li><a href="https://www.livroreclamacoes.pt" target="_blank" rel="noopener">Livro de Reclamações</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-social">
+                    <a href="https://www.facebook.com/boasaudeervanaria/" target="_blank" rel="noopener" aria-label="Facebook">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    </a>
+                    <a href="https://wa.me/351919086529" target="_blank" rel="noopener" aria-label="WhatsApp">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                    </a>
+                </div>
+                <div class="footer-payments">
+                    <span class="payment-badge">PayPal</span>
+                    <span class="payment-badge">MB Way</span>
+                    <span class="payment-badge">Transferência</span>
+                </div>
+                <p>© 2025 Espaço Boa Saúde. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="cart-overlay"></div>
+    <div class="cart-slideout">
+        <div class="cart-header">
+            <h2>O Seu Carrinho</h2>
+            <button class="cart-close-btn" aria-label="Fechar carrinho">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+        </div>
+        <div class="cart-items"></div>
+        <div class="cart-subtotal"></div>
+    </div>
+
+    <div class="mobile-nav-overlay"></div>
+    <nav class="mobile-nav">
+        <button class="mobile-nav-close" aria-label="Fechar menu">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+        <div class="mobile-nav-links">
+            <a href="#marcas">Marcas</a>
+            <a href="#produtos">Produtos</a>
+            <a href="/pages/servicos.html">Serviços</a>
+            <a href="/pages/blog.html">Blog</a>
+            <a href="/pages/sobre.html">Sobre Nós</a>
+            <a href="/pages/login.html">A Minha Conta</a>
+        </div>
+        <div class="mobile-nav-contact">
+            <p>Precisa de ajuda?</p>
+            <a href="tel:+351919086529">919 086 529</a>
+        </div>
+    </nav>
+
+    <a href="https://wa.me/351919086529?text=Olá! Tenho uma questão sobre os vossos produtos." class="whatsapp-float" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+    </a>
+
+    <div class="cookie-banner">
+        <p>Este site utiliza cookies para melhorar a sua experiência.</p>
+        <div class="cookie-banner-actions">
+            <button class="btn btn-primary cookie-accept-btn">Aceitar</button>
+            <a href="/pages/privacidade.html" class="text-sm text-secondary">Saber mais</a>
+        </div>
+    </div>
+
+    <script>
+        var PRODUCT_CATALOG = {
+            // Doctor
+            "101": { id: "101", name: "Magnesium Compositus", brand: "Doctor", price: 48.00, desc: "Magnésio de alta absorção com cofatores para o sistema nervoso e muscular.", image: "" },
+            "102": { id: "102", name: "Oxygen Compositus", brand: "Doctor", price: 40.60, desc: "Fórmula com plantas oxigenantes e vitaminas antioxidantes.", image: "../img/AND_0343.JPG" },
+            "103": { id: "103", name: "Hypomo Afrikan gotas 50ml", brand: "Doctor", price: 26.00, desc: "Batata Africana - apoio à próstata e vias urinárias.", image: "../img/AND_0183.JPG" },
+            "104": { id: "104", name: "Slim II Compositus", brand: "Doctor", price: 38.00, desc: "Fórmula de controlo de peso com extratos vegetais e oligoelementos.", image: "" },
+            "105": { id: "105", name: "Hepato Compositus", brand: "Doctor", price: 42.00, desc: "Apoio hepático com cardo mariano, alcachofra e oligoelementos.", image: "" },
+            "106": { id: "106", name: "Reno Compositus", brand: "Doctor", price: 39.50, desc: "Fórmula renal com plantas diuréticas e minerais.", image: "" },
+            "107": { id: "107", name: "Cardio Compositus", brand: "Doctor", price: 44.00, desc: "Apoio cardiovascular com espinheiro, oliveira e CoQ10.", image: "" },
+            "108": { id: "108", name: "Gastro Compositus", brand: "Doctor", price: 36.00, desc: "Proteção gástrica com alcaçuz, gengibre e enzimas digestivas.", image: "" },
+            "109": { id: "109", name: "Osteo Compositus", brand: "Doctor", price: 41.00, desc: "Saúde óssea com cálcio, vitamina D3, K2 e magnésio.", image: "" },
+            "110": { id: "110", name: "Neuro Compositus", brand: "Doctor", price: 45.00, desc: "Apoio cognitivo com ginkgo biloba, fosfatidilserina e B12.", image: "" },
+            "111": { id: "111", name: "Imuno Compositus", brand: "Doctor", price: 37.50, desc: "Reforço imunitário com equinácea, vitamina C e zinco.", image: "" },
+            "112": { id: "112", name: "Derma Compositus", brand: "Doctor", price: 33.00, desc: "Saúde da pele com bardana, pensamento e biotina.", image: "" },
+            "113": { id: "113", name: "STOP Elixir", brand: "Doctor", price: 26.00, desc: "Fitocomplexo e oligoelementos em elixir bebível.", image: "../img/AND_0161.JPG" },
+            "114": { id: "114", name: "Ginkgo SPG (gotas 50ml)", brand: "Doctor", price: 22.00, desc: "Fitoconcentrado de Ginkgo Biloba em gotas para circulação cerebral.", image: "../img/AND_0181.JPG" },
+            "115": { id: "115", name: "Phytoscalp (fitocomplexo)", brand: "Doctor", price: 24.00, desc: "Fitocomplexo concentrado para couro cabeludo e queda de cabelo.", image: "../img/AND_0189.JPG" },
+            "116": { id: "116", name: "Pygeum (gotas 50ml)", brand: "Doctor", price: 22.00, desc: "Fitocomplexo concentrado de Pygeum africanum para próstata.", image: "../img/AND_0191.JPG" },
+            "117": { id: "117", name: "ATX-Detox (gotas 50ml)", brand: "Doctor", price: 24.00, desc: "Fitocomplexo de desintoxicação com plantas depurativas.", image: "../img/AND_0193.JPG" },
+            "118": { id: "118", name: "Cobre-Ouro-Prata Policatalisador", brand: "Doctor", price: 26.00, desc: "Oligoelementos Cu-Au-Ag em solução bebível para equilíbrio catalítico.", image: "../img/AND_0194.JPG" },
+            "119": { id: "119", name: "Iodo Catalisador (gotas 50ml)", brand: "Doctor", price: 22.00, desc: "Oligoelemento Iodo em solução bebível para função tiroideia.", image: "../img/AND_0196.JPG" },
+            "120": { id: "120", name: "SILEX Elixir Oligocomplexo", brand: "Doctor", price: 28.00, desc: "Elixir oligocomplexo catalisador bebível 100ml.", image: "../img/AND_0157.JPG" },
+            "121": { id: "121", name: "Nephro Soluretikes (200ml)", brand: "Doctor", price: 32.00, desc: "Complexo xaroposo fitoconcentrado de apoio renal.", image: "../img/AND_0162.JPG" },
+            "122": { id: "122", name: "Nephro SPG-REN (200ml)", brand: "Doctor", price: 32.00, desc: "Complexo xaroposo SPG-REN para função renal.", image: "../img/AND_0171.JPG" },
+            "123": { id: "123", name: "Rescue SPG-VITA (200ml)", brand: "Doctor", price: 32.00, desc: "Complexo xaroposo SPG-VITA revitalizante.", image: "../img/AND_0172.JPG" },
+            "124": { id: "124", name: "IMN-CK Elixir Oligocomplexo", brand: "Doctor", price: 28.00, desc: "Elixir oligocomplexo catalisador imuno 100ml.", image: "../img/AND_0179.JPG" },
+            "125": { id: "125", name: "Enxofre Catalisador S (gotas 50ml)", brand: "Doctor", price: 22.00, desc: "Oligoelemento Enxofre em solução bebível.", image: "../img/AND_0198.JPG" },
+            "126": { id: "126", name: "Cálcio Catalisador Ca (gotas 50ml)", brand: "Doctor", price: 22.00, desc: "Oligoelemento Cálcio em solução bebível.", image: "../img/AND_0200.JPG" },
+            "127": { id: "127", name: "Fósforo Catalisador P (gotas 50ml)", brand: "Doctor", price: 22.00, desc: "Oligoelemento Fósforo em solução bebível.", image: "../img/AND_0202.JPG" },
+            "128": { id: "128", name: "Manganês Catalisador Mn (gotas 50ml)", brand: "Doctor", price: 22.00, desc: "Oligoelemento Manganês em solução bebível.", image: "../img/AND_0204.JPG" },
+            "129": { id: "129", name: "Vanádio Catalisador (gotas 50ml)", brand: "Doctor", price: 22.00, desc: "Oligoelemento Vanádio em solução bebível.", image: "../img/AND_0206.JPG" },
+            "130": { id: "130", name: "Cobre Catalisador Cu (gotas 50ml)", brand: "Doctor", price: 22.00, desc: "Oligoelemento Cobre em solução bebível.", image: "../img/AND_0208.JPG" },
+            "131": { id: "131", name: "Minero-SZV Oliglobal (gotas 50ml)", brand: "Doctor", price: 22.00, desc: "Complexo oliglobal mineral SZV em gotas bebíveis.", image: "../img/AND_0210.JPG" },
+            "132": { id: "132", name: "Silício Catalisador Si (gotas 50ml)", brand: "Doctor", price: 22.00, desc: "Oligoelemento Silício em solução bebível.", image: "../img/AND_0212.JPG" },
+            "133": { id: "133", name: "Flúor Catalisador F (gotas 50ml)", brand: "Doctor", price: 22.00, desc: "Oligoelemento Flúor em solução bebível.", image: "../img/AND_0214.JPG" },
+            "134": { id: "134", name: "Cobalto Catalisador Co (gotas 50ml)", brand: "Doctor", price: 22.00, desc: "Oligoelemento Cobalto em solução bebível.", image: "../img/AND_0216.JPG" },
+            "135": { id: "135", name: "Minero-CCCS Oliglobal (gotas 50ml)", brand: "Doctor", price: 22.00, desc: "Complexo oliglobal Cu-Cr-Co-Se em gotas bebíveis.", image: "../img/AND_0218.JPG" },
+            "136": { id: "136", name: "Quadrimin + Ácido Fólico B12 B9 (gotas 50ml)", brand: "Doctor", price: 24.00, desc: "Complexo de vitaminas B com ácido fólico em gotas.", image: "../img/AND_0220.JPG" },
+            "137": { id: "137", name: "Césio Oligoelemento Cs (gotas 60ml)", brand: "Doctor", price: 22.00, desc: "Oligoelemento Césio em gotas bebíveis.", image: "../img/AND_0222.JPG" },
+            "138": { id: "138", name: "Manganésio-Zinco Mn-Zn (gotas)", brand: "Doctor", price: 22.00, desc: "Policatalisador Manganésio-Zinco em gotas bebíveis.", image: "../img/AND_0224.JPG" },
+            "139": { id: "139", name: "Níquel Oligoelemento Ni (gotas 50ml)", brand: "Doctor", price: 22.00, desc: "Oligoelemento Níquel em gotas bebíveis.", image: "../img/AND_0226.JPG" },
+            "140": { id: "140", name: "Selénio Catalisador Se (gotas 50ml)", brand: "Doctor", price: 22.00, desc: "Oligoelemento Selénio em solução bebível.", image: "../img/AND_0228.JPG" },
+            "141": { id: "141", name: "Ferro-Cobre-Cobalto Fe-Cu-Co (gotas 50ml)", brand: "Doctor", price: 22.00, desc: "Biocatalisador Ferro-Cobre-Cobalto em gotas bebíveis.", image: "../img/AND_0230.JPG" },
+            "142": { id: "142", name: "Minero-VITA Oligosol (gotas 50ml)", brand: "Doctor", price: 22.00, desc: "Complexo oligosol vitamínico mineral em gotas.", image: "../img/AND_0232.JPG" },
+            "143": { id: "143", name: "Infectoligo Oliglobal Co-Mg-Mn-Zn (gotas 50ml)", brand: "Doctor", price: 22.00, desc: "Oliglobal para apoio imunitário e anti-infecioso.", image: "../img/AND_0234.JPG" },
+            "144": { id: "144", name: "Zinco Catalisador Zn (gotas 50ml)", brand: "Doctor", price: 22.00, desc: "Oligoelemento Zinco em solução bebível.", image: "../img/AND_0236.JPG" },
+            "145": { id: "145", name: "Potássio Catalisador K (gotas 50ml)", brand: "Doctor", price: 22.00, desc: "Oligoelemento Potássio em solução bebível.", image: "../img/AND_0238.JPG" },
+            "146": { id: "146", name: "Zinco-Cobre Policatalisador Zn-Cu (gotas 50ml)", brand: "Doctor", price: 22.00, desc: "Policatalisador Zinco-Cobre em gotas bebíveis.", image: "../img/AND_0242.JPG" },
+            "147": { id: "147", name: "Zinco-Níquel-Cobalto Zn-Ni-Co (gotas 50ml)", brand: "Doctor", price: 22.00, desc: "Policatalisador Zn-Ni-Co em gotas bebíveis.", image: "../img/AND_0244.JPG" },
+            "148": { id: "148", name: "Lepidolite Catalisador Li (gotas 50ml)", brand: "Doctor", price: 22.00, desc: "Oligoelemento Lítio em solução bebível.", image: "../img/AND_0246.JPG" },
+            "149": { id: "149", name: "Manganês-Cobre Mn-Cu Policatalisador (gotas 50ml)", brand: "Doctor", price: 22.00, desc: "Policatalisador Manganês-Cobre em gotas bebíveis.", image: "../img/AND_0247.JPG" },
+            "150": { id: "150", name: "Crómio Catalisador Cr (gotas 50ml)", brand: "Doctor", price: 22.00, desc: "Oligoelemento Crómio em solução bebível.", image: "../img/AND_0248.JPG" },
+            "151": { id: "151", name: "Germânio Catalisador Ge (gotas 50ml)", brand: "Doctor", price: 22.00, desc: "Oligoelemento Germânio em solução bebível.", image: "../img/AND_0249.JPG" },
+            "152": { id: "152", name: "Minero-SGT Oliglobal LH (gotas 50ml)", brand: "Doctor", price: 22.00, desc: "Complexo oliglobal SGT em gotas bebíveis.", image: "../img/AND_0250.JPG" },
+            "153": { id: "153", name: "Alumínio-Cobalto Al-Co Policatalisador (gotas 50ml)", brand: "Doctor", price: 22.00, desc: "Policatalisador Alumínio-Cobalto em gotas bebíveis.", image: "../img/AND_0251.JPG" },
+            "154": { id: "154", name: "Oboligo Oligoelemento Global (gotas)", brand: "Doctor", price: 26.00, desc: "Complexo global de oligoelementos em gotas.", image: "../img/AND_0252.JPG" },
+            "155": { id: "155", name: "Ginkgo SPG (gotas 50ml) — variante", brand: "Doctor", price: 22.00, desc: "Fitoconcentrado Ginkgo biloba — apresentação alternativa.", image: "../img/AND_0253_Desf.JPG" },
+            "156": { id: "156", name: "Própolis Extrato Concentrado (gotas 30ml)", brand: "Doctor", price: 18.00, desc: "Extrato concentrado de própolis em gotas.", image: "../img/AND_0255.JPG" },
+            "157": { id: "157", name: "Induphyt Biocomplexo (gotas 30ml)", brand: "Doctor", price: 20.00, desc: "Biocomplexo fitoterapêutico concentrado em gotas.", image: "../img/AND_0256.JPG" },
+            "158": { id: "158", name: "5Herbal5 Fitocomplexo (200cc)", brand: "Doctor", price: 28.00, desc: "Fitocomplexo concentrado com 5 ervas.", image: "../img/AND_0258.JPG" },
+            "159": { id: "159", name: "Feminal Fitocomplexo (200cc)", brand: "Doctor", price: 28.00, desc: "Fitocomplexo concentrado para saúde feminina.", image: "../img/AND_0260.JPG" },
+            "160": { id: "160", name: "Cardiotonic SPG-CARD (200ml)", brand: "Doctor", price: 32.00, desc: "Complexo xaroposo SPG-CARD para apoio cardíaco.", image: "../img/AND_0261.JPG" },
+            "161": { id: "161", name: "Complexo Xaroposo Doctor (200ml)", brand: "Doctor", price: 30.00, desc: "Complexo xaroposo Doctor compositus 200ml.", image: "../img/AND_0262.JPG" },
+            "162": { id: "162", name: "Enzymatic Biocomplexo (gotas 50ml)", brand: "Doctor", price: 24.00, desc: "Biocomplexo enzimático concentrado em gotas.", image: "../img/AND_0264_desf.JPG" },
+            "163": { id: "163", name: "Prostgian SPG-PROST (200ml)", brand: "Doctor", price: 32.00, desc: "Complexo xaroposo SPG-PROST para próstata.", image: "../img/AND_0265.JPG" },
+            "164": { id: "164", name: "Venoplant SPG-VEN (200ml)", brand: "Doctor", price: 32.00, desc: "Complexo xaroposo SPG-VEN para circulação venosa.", image: "../img/AND_0267.JPG" },
+            "165": { id: "165", name: "Hepa SPAGYRHEPA (200ml)", brand: "Doctor", price: 32.00, desc: "Complexo xaroposo espagirico para função hepática.", image: "../img/AND_0268.JPG" },
+            "166": { id: "166", name: "Sabugueiro Complexo Xaroposo (200ml)", brand: "Doctor", price: 30.00, desc: "Complexo xaroposo com Sabugueiro para imunidade.", image: "../img/AND_0269_desf.JPG" },
+            "167": { id: "167", name: "Suporte Base Personal Cocktails (150ml)", brand: "Doctor", price: 26.00, desc: "Base bebível para cocktails personalizados Doctor.", image: "../img/AND_0271.JPG" },
+            "168": { id: "168", name: "Active Magnesium ACTF (ampolas 20x10cc)", brand: "Doctor", price: 35.00, desc: "Magnésio activo com oligoelementos Se, Li, P em ampolas bebíveis.", image: "../img/AND_0272.JPG" },
+            "169": { id: "169", name: "Oxigénio Activo O2 ACTF (ampolas 20x10cc)", brand: "Doctor", price: 35.00, desc: "Solução de peróxido de hidrogénio diluído em ampolas bebíveis.", image: "../img/AND_0273.JPG" },
+            "170": { id: "170", name: "Tonicer Bioregulator", brand: "Doctor", price: 28.00, desc: "Suplemento bioregulador tonicer pack compositum.", image: "../img/AND_0275.JPG" },
+            "171": { id: "171", name: "Bio-active Sulphur ACTF (ampolas 20x10cc)", brand: "Doctor", price: 35.00, desc: "Enxofre bio-activo com extrato de mirtilo e vitamina C.", image: "../img/AND_0277.JPG" },
+            "172": { id: "172", name: "Bio-active Sulphur Comprimidos", brand: "Doctor", price: 20.00, desc: "Enxofre bio-activo em comprimidos suplemento.", image: "../img/AND_0278.JPG" },
+            "173": { id: "173", name: "Vitamina C Sérum Cosmético (60ml)", brand: "Doctor", price: 24.00, desc: "Sérum concentrado de Vitamina C para o rosto.", image: "../img/AND_0279_desf.JPG" },
+            "174": { id: "174", name: "Alecrim Óleo Essencial docVIT (30cc)", brand: "Doctor", price: 14.00, desc: "Óleo essencial de Alecrim puro 30cc.", image: "../img/AND_0281.JPG" },
+            "175": { id: "175", name: "Cannabis Oil Green Sativ (30ml)", brand: "Doctor", price: 38.00, desc: "Óleo de cannabis Delta 30ml.", image: "../img/AND_0284.JPG" },
+            "176": { id: "176", name: "Lugol's-50 Soluto Hidro", brand: "Doctor", price: 18.00, desc: "Solução de Lugol iodo-iodeto de potássio.", image: "../img/AND_0285.JPG" },
+            "177": { id: "177", name: "KinoRescue Fitocomplesso", brand: "Doctor", price: 26.00, desc: "Fitocomplesso concentrado KinoRescue.", image: "../img/AND_0286.JPG" },
+            "178": { id: "178", name: "Acqua H&W Vert Océan Eau de Cologne (200ml)", brand: "Doctor", price: 32.00, desc: "Eau de Cologne natural spray vert océan 200ml.", image: "../img/AND_0288.JPG" },
+            "179": { id: "179", name: "Eau de Fougère Natural Spray (100ml)", brand: "Doctor", price: 28.00, desc: "Eau de Fougère natural spray Doctor Health & Wellness.", image: "../img/AND_0289.JPG" },
+            "180": { id: "180", name: "Eau de Verveine Eau de Toilette (spray)", brand: "Doctor", price: 28.00, desc: "Eau de Toilette Verveine natural spray.", image: "../img/AND_0290.JPG" },
+            "181": { id: "181", name: "Chlorella Algae-Complexo Biológico (125g)", brand: "Doctor", price: 22.00, desc: "Chlorella biológica 125g complexo de algas.", image: "../img/AND_0297.JPG" },
+            "182": { id: "182", name: "Turmeric & Pepper Suplemento (150g)", brand: "Doctor", price: 20.00, desc: "Curcuma longa e Piper nigrum 150g.", image: "../img/AND_0299_gordura.JPG" },
+            "183": { id: "183", name: "Maca Biocomplexo Suplemento (150g)", brand: "Doctor", price: 20.00, desc: "Maca biocomplexo suplemento biológico 150g.", image: "../img/AND_0300.JPG" },
+            "184": { id: "184", name: "Kudzu Biocomplexo Suplemento (150g)", brand: "Doctor", price: 20.00, desc: "Kudzu biocomplexo suplemento 150g.", image: "../img/AND_0301.JPG" },
+            "185": { id: "185", name: "Cacau Biológico Suplemento (200g)", brand: "Doctor", price: 22.00, desc: "Theobroma cacao biológico 200g.", image: "../img/AND_0303.JPG" },
+            "186": { id: "186", name: "Sol Natura (produto natural)", brand: "Doctor", price: 20.00, desc: "Produto natural Sol Natura.", image: "../img/AND_0304.JPG" },
+            "187": { id: "187", name: "SUMI Água Iberssénia", brand: "Doctor", price: 16.00, desc: "Água mineral SUMI Iberssénia.", image: "../img/AND_0309.JPG" },
+            "188": { id: "188", name: "PAU d'ARCO Extrato Aquoso Elixir (500ml)", brand: "Doctor", price: 36.00, desc: "Extrato aquoso de Pau d'Arco elixir bebível 500ml.", image: "../img/AND_0348.PNG" },
+            "189": { id: "189", name: "Magnésio Catalisador Mg (gotas 50ml)", brand: "Doctor", price: 22.00, desc: "Oligoelemento Magnésio em solução bebível.", image: "../img/AND_0353.JPG" },
+            "190": { id: "190", name: "SILEX Gel para o Corpo", brand: "Doctor", price: 26.00, desc: "Gel corporal de silício Doctor Health & Wellness.", image: "../img/AND_0354.JPG" },
+        "191": { id: "191", name: "Madame Eau de Toilette", brand: "Dorall Collection", price: 28.00, desc: "Eau de Toilette Madame da Dorall Collection.", image: "../img/AND_0291.JPG" },
+        "192": { id: "192", name: "Sol Natura", brand: "Sol Natura", price: 22.00, desc: "Suplemento natural Sol Natura.", image: "../img/AND_0304.JPG" },
+        "193": { id: "193", name: "SIMI 4", brand: "Doctor", price: 24.00, desc: "SIMI 4 — fórmula Doctor Health & Wellness.", image: "../img/AND_0311.JPG" },
+        "194": { id: "194", name: "Maca + Ginger", brand: "Doctor", price: 20.00, desc: "Complexo Maca + Ginger em comprimidos.", image: "../img/AND_0316.JPG" },
+        "195": { id: "195", name: "TriptoActive / Mirtillo / Cologen", brand: "Doctor", price: 30.00, desc: "Linha Doctor: TriptoActive, Mirtillo e Cologen.", image: "../img/AND_0317.JPG" },
+            // GHF
+            "201": { id: "201", name: "Vinagre Plus (cápsulas)", brand: "GHF", price: 11.50, desc: "Cápsulas com vinagre de cidra e ingredientes de apoio metabólico.", image: "../img/vinagre.jpg" },
+            "202": { id: "202", name: "Geleia Real Infantil Própolis", brand: "GHF", price: 35.00, desc: "Comprimidos mastigáveis com geleia real e própolis para crianças.", image: "../img/geleia_real.png" },
+            "203": { id: "203", name: "Garcinia Cambdogia (cápsulas)", brand: "GHF", price: 14.50, desc: "Extrato de garcinia para controlo de apetite e metabolismo lipídico.", image: "" },
+            "204": { id: "204", name: "Fibra com Ameixa e Pectina", brand: "GHF", price: 9.50, desc: "Comprimidos ricos em fibra para regulação do trânsito intestinal.", image: "" },
+            "205": { id: "205", name: "Complexo B (cápsulas)", brand: "GHF", price: 19.73, desc: "Complexo vitamínico B completo para energia e sistema nervoso.", image: "" },
+            "206": { id: "206", name: "Magnésio Marinho (cápsulas)", brand: "GHF", price: 16.80, desc: "Magnésio de origem marinha para músculos e sistema nervoso.", image: "" },
+            "207": { id: "207", name: "Cardo Mariano (cápsulas)", brand: "GHF", price: 12.90, desc: "Proteção hepática natural com silimarina concentrada.", image: "" },
+            "208": { id: "208", name: "Valeriana Forte (cápsulas)", brand: "GHF", price: 13.50, desc: "Relaxamento natural e apoio ao sono reparador.", image: "" },
+            "209": { id: "209", name: "Espirulina Bio (comprimidos)", brand: "GHF", price: 18.50, desc: "Superalimento rico em proteínas, vitaminas e minerais.", image: "" },
+            "210": { id: "210", name: "Omega 3-6-9 (cápsulas)", brand: "GHF", price: 22.00, desc: "Ácidos gordos essenciais para coração e cérebro.", image: "" },
+            "211": { id: "211", name: "Curcuma + Piperina (cápsulas)", brand: "GHF", price: 15.90, desc: "Anti-inflamatório natural com absorção melhorada.", image: "" },
+            "212": { id: "212", name: "Colágeno Marinho (cápsulas)", brand: "GHF", price: 24.50, desc: "Colágeno hidrolisado tipo I para pele, cabelo e articulações.", image: "" },
+            "213": { id: "213", name: "Probiótico 10 Biliões (cápsulas)", brand: "GHF", price: 21.00, desc: "10 estirpes probióticas para equilíbrio da flora intestinal.", image: "" },
+            "214": { id: "214", name: "Vitamina D3 + K2 (gotas)", brand: "GHF", price: 14.00, desc: "Sinergia vitamínica para ossos e sistema imunitário.", image: "" },
+            "215": { id: "215", name: "Alcachofra (cápsulas)", brand: "GHF", price: 10.50, desc: "Apoio digestivo e depuração hepática natural.", image: "" },
+            "216": { id: "216", name: "Gengibre Bio (cápsulas)", brand: "GHF", price: 11.90, desc: "Anti-náusea natural e apoio digestivo.", image: "" },
+            "217": { id: "217", name: "Equinácea (cápsulas)", brand: "GHF", price: 13.00, desc: "Reforço natural das defesas imunitárias.", image: "" },
+            "218": { id: "218", name: "Melatonina 1.9mg (comprimidos)", brand: "GHF", price: 9.90, desc: "Regulação natural do ciclo do sono.", image: "" },
+            "219": { id: "219", name: "Coenzima Q10 (cápsulas)", brand: "GHF", price: 26.00, desc: "Energia celular e antioxidante para o coração.", image: "" },
+            "220": { id: "220", name: "Ginkgo Biloba (cápsulas)", brand: "GHF", price: 14.50, desc: "Circulação cerebral e função cognitiva.", image: "" },
+            // Natura House
+            "301": { id: "301", name: "Aloe Vera Gel Puro 99%", brand: "Natura House", price: 18.50, desc: "Gel de aloé vera puro para hidratação e regeneração da pele.", image: "" },
+            "302": { id: "302", name: "Shampoo Biotina Fortificante", brand: "Natura House", price: 12.90, desc: "Shampoo natural com biotina para cabelo fraco e queda.", image: "" },
+            "303": { id: "303", name: "Creme Corporal Manteiga de Karité", brand: "Natura House", price: 16.00, desc: "Hidratação intensa com manteiga de karité e óleos essenciais.", image: "" },
+            "304": { id: "304", name: "Óleo de Rosa Mosqueta Bio", brand: "Natura House", price: 14.50, desc: "Regeneração cutânea e atenuação de cicatrizes e estrias.", image: "" },
+            "305": { id: "305", name: "Creme Anti-Rugas Ácido Hialurónico", brand: "Natura House", price: 28.00, desc: "Hidratação profunda e preenchimento natural das rugas.", image: "" },
+            "306": { id: "306", name: "Gel de Banho Aveia e Mel", brand: "Natura House", price: 9.50, desc: "Limpeza suave para peles sensíveis e atópicas.", image: "" },
+            "307": { id: "307", name: "Sérum Vitamina C Concentrado", brand: "Natura House", price: 22.00, desc: "Luminosidade e proteção antioxidante para o rosto.", image: "" },
+            "308": { id: "308", name: "Leite Corporal Amêndoas Doces", brand: "Natura House", price: 11.90, desc: "Nutrição e suavidade para todo o tipo de pele.", image: "" },
+            // Oboligo
+            "401": { id: "401", name: "Oboligo (I-Li-K-P-Mg)", brand: "Oboligo", price: 26.00, desc: "Complexo de oligoelementos: Iodo, Lítio, Potássio, Fósforo e Magnésio.", image: "" },
+            "402": { id: "402", name: "Reumoligo (Li-Mg-Cu-Mn-K)", brand: "Oboligo", price: 26.00, desc: "Oligoelementos para apoio articular e reumatológico.", image: "" },
+            "403": { id: "403", name: "Nervosigo (Li-P-Mg-Mn)", brand: "Oboligo", price: 26.00, desc: "Complexo mineral para equilíbrio do sistema nervoso.", image: "" },
+            "404": { id: "404", name: "Imunoligo (Cu-Mn-Zn-Se)", brand: "Oboligo", price: 26.00, desc: "Oligoelementos para reforço do sistema imunitário.", image: "" },
+            "405": { id: "405", name: "Digestoligo (Co-Mn-Ni-Zn)", brand: "Oboligo", price: 26.00, desc: "Minerais catalíticos para função digestiva.", image: "" },
+            "406": { id: "406", name: "Dermaligo (S-Zn-Cu-Se)", brand: "Oboligo", price: 26.00, desc: "Oligoelementos para saúde da pele, cabelo e unhas.", image: "" },
+            "407": { id: "407", name: "Endocrinoligo (Zn-Ni-Co-Mn)", brand: "Oboligo", price: 26.00, desc: "Apoio ao sistema endócrino e equilíbrio hormonal.", image: "" },
+            "408": { id: "408", name: "Hepatoligo (Mn-S-Zn-Cr)", brand: "Oboligo", price: 26.00, desc: "Oligoelementos para função hepática e desintoxicação.", image: "" }
+        };
+
+        var currentProductId = null;
+
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(window.location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+
+        function formatPrice(price) {
+            return price.toFixed(2).replace('.', ',') + ' €';
+        }
+
+        function getBrandLink(brand) {
+            if (brand === 'Doctor') return 'marca-doctor.html';
+            if (brand === 'GHF') return 'marca-ghf.html';
+            if (brand === 'Natura House') return 'marca-natura.html';
+            if (brand === 'Oboligo') return 'marca-oboligo.html';
+            return '#';
+        }
+
+        function changeQuantity(amount) {
+            var qtyInput = document.getElementById('product-qty');
+            var currentVal = parseInt(qtyInput.value) || 1;
+            var newVal = currentVal + amount;
+            if (newVal >= 1 && newVal <= 99) {
+                qtyInput.value = newVal;
+            }
+        }
+
+        function addCurrentToCart() {
+            if (!currentProductId) return;
+            var qtyInput = document.getElementById('product-qty');
+            var qty = parseInt(qtyInput.value) || 1;
+            for (var i = 0; i < qty; i++) {
+                if (typeof addToCart === 'function') {
+                    addToCart(currentProductId);
+                }
+            }
+        }
+
+        function loadProduct() {
+            var id = getUrlParameter('id');
+            var product = PRODUCT_CATALOG[id];
+
+            if (!product) {
+                document.getElementById('error-message').style.display = 'block';
+                return;
+            }
+
+            currentProductId = id;
+            document.getElementById('product-content').style.display = 'block';
+
+            document.title = product.name + ' | Espaço Boa Saúde';
+
+            var bcBrand = document.getElementById('bc-brand');
+            bcBrand.textContent = product.brand;
+            bcBrand.href = getBrandLink(product.brand);
+            document.getElementById('bc-name').textContent = product.name;
+
+            document.getElementById('product-brand').textContent = product.brand;
+            document.getElementById('product-name').textContent = product.name;
+            document.getElementById('product-price').textContent = formatPrice(product.price);
+            document.getElementById('product-desc').textContent = product.desc;
+
+            var imageContainer = document.getElementById('product-image-container');
+            if (product.image) {
+                imageContainer.innerHTML = '<img src="' + product.image + '" alt="' + product.name + '">';
+            } else {
+                document.getElementById('product-image-placeholder').textContent = product.brand;
+            }
+
+            var wrapper = document.getElementById('product-wrapper');
+            wrapper.setAttribute('data-product-id', product.id);
+            wrapper.setAttribute('data-product-name', product.name);
+            wrapper.setAttribute('data-product-brand', product.brand);
+            wrapper.setAttribute('data-product-price', product.price);
+            wrapper.setAttribute('data-product-image', product.image);
+
+            loadRelatedProducts(product);
+        }
+
+        function loadRelatedProducts(currentProduct) {
+            var grid = document.getElementById('related-products-grid');
+            var relatedHtml = '';
+            var count = 0;
+
+            for (var key in PRODUCT_CATALOG) {
+                if (PRODUCT_CATALOG.hasOwnProperty(key)) {
+                    var p = PRODUCT_CATALOG[key];
+                    if (p.brand === currentProduct.brand && p.id !== currentProduct.id && count < 4) {
+
+                        var imageHtml = p.image
+                            ? '<img src="' + p.image + '" alt="' + p.name + '">'
+                            : '<div class="product-card-placeholder">' + p.brand + '</div>';
+
+                        relatedHtml +=
+                            '<div class="product-card" data-product-id="' + p.id + '" data-product-name="' + p.name + '" data-product-brand="' + p.brand + '" data-product-price="' + p.price + '" data-product-image="' + p.image + '">' +
+                                '<div class="product-card-image">' +
+                                    '<a href="produto.html?id=' + p.id + '">' + imageHtml + '</a>' +
+                                '</div>' +
+                                '<div class="product-card-body">' +
+                                    '<span class="product-card-brand">' + p.brand.toUpperCase() + '</span>' +
+                                    '<h3 class="product-card-title"><a href="produto.html?id=' + p.id + '">' + p.name + '</a></h3>' +
+                                    '<div class="product-card-price">' + formatPrice(p.price) + '</div>' +
+                                    '<button class="btn btn-primary add-to-cart" onclick="addToCart(\'' + p.id + '\')">' +
+                                        'Adicionar ao Carrinho' +
+                                    '</button>' +
+                                '</div>' +
+                            '</div>';
+
+                        count++;
+                    }
+                }
+            }
+            grid.innerHTML = relatedHtml;
+        }
+
+        document.addEventListener('DOMContentLoaded', loadProduct);
+    </script>
+
+    <script src="../js/app.js"></script>
+    <script src="../js/cart.js"></script>
+</body>
+</html>
