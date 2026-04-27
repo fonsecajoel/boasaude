@@ -48,20 +48,23 @@
         </div>
     </header>
 
+    
     <main>
-        <section class="hero">
-            <div class="container">
-                <div class="hero-content">
+        <section class="hero hero-luxury">
+            <div class="grain-overlay"></div>
+            <div class="geometric-deco"></div>
+            <div class="container hero-editorial-layout">
+                <div class="hero-content reveal">
                     <span class="overline">Desde Caranguejeira para todo o Portugal</span>
-                    <h1 class="hero-title">O seu bem-estar começa aqui</h1>
+                    <h1 class="hero-luxury-title">O seu bem-estar,<br>a nossa arte.</h1>
                     <p class="hero-subtitle">Suplementos naturais, terapias ancestrais e aconselhamento personalizado para cuidar da sua saúde de forma natural.</p>
                     <div class="hero-actions">
                         <a href="#produtos" class="btn btn-primary btn-lg">Explorar Produtos</a>
-                        <a href="https://wa.me/351919086529" class="btn btn-secondary btn-lg" target="_blank" rel="noopener">Fale Connosco</a>
+                        <a href="https://wa.me/351919086529" class="btn btn-secondary btn-lg" target="_blank" rel="noopener">WhatsApp</a>
                     </div>
                     <div class="hero-trust">
                         <div class="trust-item">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
                             <span>Envio Grátis +75€</span>
                         </div>
                         <div class="trust-item">
@@ -74,18 +77,21 @@
                         </div>
                     </div>
                 </div>
+                <div class="hero-image reveal" style="transition-delay: 0.3s">
+                    <img src="../img/AND_0343.JPG" alt="Terapias Naturais e Bem-Estar" loading="lazy">
+                </div>
             </div>
         </section>
 
         <section id="marcas" class="section">
             <div class="container">
-                <div class="section-header">
+                <div class="section-header reveal">
                     <span class="overline">Parceiros de Confiança</span>
                     <h2>As Nossas Marcas</h2>
                     <p>Selecionamos criteriosamente as melhores marcas de suplementos naturais para o seu bem-estar.</p>
                 </div>
                 <div class="brands-grid">
-                    <a href="/pages/marca-doctor.html" class="brand-card">
+                    <a href="/pages/marca-doctor.html" class="brand-card reveal" style="transition-delay: 0.1s">
                         <div class="brand-card-image">
                             <img src="../img/doctor.jpg" alt="Doctor Compositus" loading="lazy">
                         </div>
@@ -95,7 +101,7 @@
                             <span class="link-arrow">Ver Produtos →</span>
                         </div>
                     </a>
-                    <a href="/pages/marca-ghf.html" class="brand-card">
+                    <a href="/pages/marca-ghf.html" class="brand-card reveal" style="transition-delay: 0.2s">
                         <div class="brand-card-image">
                             <img src="../img/ghf.png" alt="GHF" loading="lazy">
                         </div>
@@ -105,7 +111,7 @@
                             <span class="link-arrow">Ver Produtos →</span>
                         </div>
                     </a>
-                    <a href="/pages/marca-natura.html" class="brand-card">
+                    <a href="/pages/marca-natura.html" class="brand-card reveal" style="transition-delay: 0.3s">
                         <div class="brand-card-image">
                             <img src="../img/natura.png" alt="Natura House" loading="lazy">
                         </div>
@@ -115,9 +121,9 @@
                             <span class="link-arrow">Ver Produtos →</span>
                         </div>
                     </a>
-                    <a href="/pages/marca-oboligo.html" class="brand-card">
+                    <a href="/pages/marca-oboligo.html" class="brand-card reveal" style="transition-delay: 0.4s">
                         <div class="brand-card-image">
-                            <div class="placeholder">OB</div>
+                            <div class="placeholder" style="background: var(--c-surface-alt); color: var(--c-accent)">OB</div>
                         </div>
                         <div class="brand-card-body">
                             <h3>Oboligo</h3>
@@ -131,133 +137,94 @@
 
         <section id="produtos" class="section">
             <div class="container">
-                <div class="section-header">
+                <div class="section-header reveal">
                     <span class="overline">Mais Procurados</span>
                     <h2>Produtos em Destaque</h2>
-                    <p>Os favoritos dos nossos clientes.</p>
+                    <p>Os favoritos dos nossos clientes, elaborados com ingredientes premium.</p>
                 </div>
-                <div class="products-grid">
-                    <article class="product-card" data-product-id="401" data-product-name="Oboligo (I-Li-K-P-Mg)" data-product-brand="Oboligo" data-product-price="26.00" data-product-image="">
-                        <div class="product-card-image"><div class="placeholder">OB</div></div>
+                <div class="products-grid" style="grid-template-columns: repeat(4, 1fr);">
+                    <article class="product-card reveal" style="transition-delay: 0.1s" data-product-id="401" data-product-name="Oboligo (I-Li-K-P-Mg)" data-product-brand="Oboligo" data-product-price="26.00" data-product-image="">
+                        <div class="product-card-image"><div class="placeholder" style="color: var(--c-accent)">OB</div></div>
                         <div class="product-card-body">
                             <span class="product-card-brand">Oboligo</span>
                             <h3 class="product-card-title"><a href="/pages/produto.html?id=401">Oboligo (I-Li-K-P-Mg)</a></h3>
                             <p class="product-card-desc">Oligoelementos essenciais</p>
                             <span class="product-card-price">€26,00</span>
-                            <button class="btn btn-primary" onclick="addToCart('401')">Adicionar ao Carrinho</button>
+                            <button class="btn btn-primary" onclick="addToCart('401')">Adicionar</button>
                         </div>
                     </article>
-                    <article class="product-card" data-product-id="402" data-product-name="Reumoligo (Li-Mg-Cu-Mn-K)" data-product-brand="Oboligo" data-product-price="26.00" data-product-image="">
-                        <div class="product-card-image"><div class="placeholder">OB</div></div>
-                        <div class="product-card-body">
-                            <span class="product-card-brand">Oboligo</span>
-                            <h3 class="product-card-title"><a href="/pages/produto.html?id=402">Reumoligo (Li-Mg-Cu-Mn-K)</a></h3>
-                            <p class="product-card-desc">Apoio articular</p>
-                            <span class="product-card-price">€26,00</span>
-                            <button class="btn btn-primary" onclick="addToCart('402')">Adicionar ao Carrinho</button>
-                        </div>
-                    </article>
-                    <article class="product-card" data-product-id="103" data-product-name="Hypomo Afrikan gotas 50ml" data-product-brand="Doctor" data-product-price="26.00" data-product-image="../img/AND_0183.JPG">
+                    <article class="product-card reveal" style="transition-delay: 0.2s" data-product-id="103" data-product-name="Hypomo Afrikan gotas 50ml" data-product-brand="Doctor" data-product-price="26.00" data-product-image="../img/AND_0183.JPG">
                         <div class="product-card-image"><img src="../img/AND_0183.JPG" alt="Hypomo Afrikan gotas 50ml" loading="lazy"></div>
                         <div class="product-card-body">
                             <span class="product-card-brand">Doctor</span>
                             <h3 class="product-card-title"><a href="/pages/produto.html?id=103">Hypomo Afrikan gotas 50ml</a></h3>
                             <p class="product-card-desc">Fórmula natural em gotas</p>
                             <span class="product-card-price">€26,00</span>
-                            <button class="btn btn-primary" onclick="addToCart('103')">Adicionar ao Carrinho</button>
+                            <button class="btn btn-primary" onclick="addToCart('103')">Adicionar</button>
                         </div>
                     </article>
-                    <article class="product-card" data-product-id="102" data-product-name="Oxygen Compositus" data-product-brand="Doctor" data-product-price="40.60" data-product-image="../img/AND_0343.JPG">
+                    <article class="product-card reveal" style="transition-delay: 0.3s" data-product-id="102" data-product-name="Oxygen Compositus" data-product-brand="Doctor" data-product-price="40.60" data-product-image="../img/AND_0343.JPG">
                         <div class="product-card-image"><img src="../img/AND_0343.JPG" alt="Oxygen Compositus" loading="lazy"></div>
                         <div class="product-card-body">
                             <span class="product-card-brand">Doctor</span>
                             <h3 class="product-card-title"><a href="/pages/produto.html?id=102">Oxygen Compositus</a></h3>
                             <p class="product-card-desc">Apoio ao bem-estar geral</p>
                             <span class="product-card-price">€40,60</span>
-                            <button class="btn btn-primary" onclick="addToCart('102')">Adicionar ao Carrinho</button>
+                            <button class="btn btn-primary" onclick="addToCart('102')">Adicionar</button>
                         </div>
                     </article>
-                    <article class="product-card" data-product-id="201" data-product-name="Vinagre Plus (cápsulas)" data-product-brand="GHF" data-product-price="11.50" data-product-image="../img/vinagre.jpg">
+                    <article class="product-card reveal" style="transition-delay: 0.4s" data-product-id="201" data-product-name="Vinagre Plus (cápsulas)" data-product-brand="GHF" data-product-price="11.50" data-product-image="../img/vinagre.jpg">
                         <div class="product-card-image"><img src="../img/vinagre.jpg" alt="Vinagre Plus" loading="lazy"></div>
                         <div class="product-card-body">
                             <span class="product-card-brand">GHF</span>
                             <h3 class="product-card-title"><a href="/pages/produto.html?id=201">Vinagre Plus (cápsulas)</a></h3>
                             <p class="product-card-desc">Suplemento de vinagre de maçã</p>
                             <span class="product-card-price">€11,50</span>
-                            <button class="btn btn-primary" onclick="addToCart('201')">Adicionar ao Carrinho</button>
-                        </div>
-                    </article>
-                    <article class="product-card" data-product-id="202" data-product-name="Geleia Real Infantil Própolis" data-product-brand="GHF" data-product-price="35.00" data-product-image="../img/geleia_real.png">
-                        <div class="product-card-image"><img src="../img/geleia_real.png" alt="Geleia Real Infantil Própolis" loading="lazy"></div>
-                        <div class="product-card-body">
-                            <span class="product-card-brand">GHF</span>
-                            <h3 class="product-card-title"><a href="/pages/produto.html?id=202">Geleia Real Infantil Própolis</a></h3>
-                            <p class="product-card-desc">Apoio imunitário infantil</p>
-                            <span class="product-card-price">€35,00</span>
-                            <button class="btn btn-primary" onclick="addToCart('202')">Adicionar ao Carrinho</button>
-                        </div>
-                    </article>
-                    <article class="product-card" data-product-id="203" data-product-name="Garcinia Cambdogia (cápsulas)" data-product-brand="GHF" data-product-price="14.50" data-product-image="">
-                        <div class="product-card-image"><div class="placeholder">GHF</div></div>
-                        <div class="product-card-body">
-                            <span class="product-card-brand">GHF</span>
-                            <h3 class="product-card-title"><a href="/pages/produto.html?id=203">Garcinia Cambdogia (cápsulas)</a></h3>
-                            <p class="product-card-desc">Controlo de peso natural</p>
-                            <span class="product-card-price">€14,50</span>
-                            <button class="btn btn-primary" onclick="addToCart('203')">Adicionar ao Carrinho</button>
-                        </div>
-                    </article>
-                    <article class="product-card" data-product-id="205" data-product-name="Complexo B (cápsulas)" data-product-brand="GHF" data-product-price="19.73" data-product-image="">
-                        <div class="product-card-image"><div class="placeholder">GHF</div></div>
-                        <div class="product-card-body">
-                            <span class="product-card-brand">GHF</span>
-                            <h3 class="product-card-title"><a href="/pages/produto.html?id=205">Complexo B (cápsulas)</a></h3>
-                            <p class="product-card-desc">Vitaminas essenciais do grupo B</p>
-                            <span class="product-card-price">€19,73</span>
-                            <button class="btn btn-primary" onclick="addToCart('205')">Adicionar ao Carrinho</button>
+                            <button class="btn btn-primary" onclick="addToCart('201')">Adicionar</button>
                         </div>
                     </article>
                 </div>
             </div>
         </section>
 
-        <section class="section section-promise">
+        <section class="section section-promise reveal">
             <div class="container">
                 <div class="section-header">
                     <span class="overline">A Nossa Missão</span>
                     <h2>Porque existimos</h2>
                 </div>
-                <blockquote class="promise-quote">"A sua saúde é o seu bem mais precioso. Nós existimos para cuidar dela."</blockquote>
+                <blockquote class="promise-quote reveal">"A sua saúde é o seu bem mais precioso. Nós existimos para cuidar dela."</blockquote>
                 <div class="pillars">
-                    <div class="pillar">
+                    <div class="pillar reveal" style="transition-delay: 0.1s">
                         <h3>Aconselhamento Personalizado</h3>
-                        <p>Cada pessoa é única. Ouvimos as suas necessidades e recomendamos os produtos certos para si.</p>
+                        <p>Cada pessoa é única. Ouvimos as suas necessidades e recomendamos os produtos certos para si com total atenção e cuidado.</p>
                     </div>
-                    <div class="pillar">
+                    <div class="pillar reveal" style="transition-delay: 0.2s">
                         <h3>Qualidade Premium</h3>
-                        <p>Trabalhamos apenas com marcas certificadas e produtos de origem controlada.</p>
+                        <p>Trabalhamos apenas com marcas certificadas, ingredientes puros e fórmulas de eficácia comprovada no tempo.</p>
                     </div>
-                    <div class="pillar">
+                    <div class="pillar reveal" style="transition-delay: 0.3s">
                         <h3>Tradição e Ciência</h3>
-                        <p>Combinamos sabedoria ancestral com os mais recentes avanços em nutrição natural.</p>
+                        <p>Combinamos a sabedoria secular da botânica e alquimia com os mais exigentes métodos de extração contemporâneos.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="section section-newsletter">
+        <section class="section section-newsletter reveal" style="background: var(--c-primary); color: var(--c-white);">
             <div class="container">
-                <h2>Receba as nossas novidades</h2>
-                <p class="subtitle">Dicas de saúde, novos produtos e ofertas exclusivas diretamente no seu email.</p>
+                <h2 style="color: var(--c-white);">Receba as nossas novidades</h2>
+                <p class="subtitle" style="color: var(--c-surface-alt);">Dicas de saúde, novos produtos e ofertas exclusivas diretamente no seu email.</p>
                 <form class="newsletter-form">
-                    <input type="email" placeholder="O seu email..." required class="newsletter-email">
-                    <button type="submit" class="btn btn-primary">Subscrever</button>
+                    <input type="email" placeholder="O seu email..." required class="newsletter-email" style="border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.05); color: var(--c-white);">
+                    <button type="submit" class="btn" style="background: var(--c-accent); color: var(--c-white);">Subscrever</button>
                 </form>
-                <p class="newsletter-legal">Ao subscrever aceita a nossa <a href="/pages/privacidade.html">Política de Privacidade</a>.</p>
+                <p class="newsletter-legal" style="color: rgba(255,255,255,0.4);">Ao subscrever aceita a nossa <a href="/pages/privacidade.html" style="color: var(--c-accent);">Política de Privacidade</a>.</p>
                 <p class="newsletter-success"></p>
             </div>
         </section>
     </main>
+
 
     <footer class="footer">
         <div class="container">
