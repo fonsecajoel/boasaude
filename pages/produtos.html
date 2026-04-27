@@ -9,15 +9,18 @@
     <style>
         /* ESTÉTICA DA PÁGINA DE PRODUTOS */
         .products-hero {
-            padding: calc(var(--header-h) + var(--s-16)) 0 var(--s-12);
+            padding: calc(var(--header-h) + 6rem) 0 4rem;
             text-align: center;
-            background: var(--c-surface-alt);
-            border-bottom: 1px solid var(--c-border-light);
+            background: var(--c-bg);
+            border-bottom: 1px solid rgba(250,250,247,0.2);
         }
         
         .products-hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            margin-bottom: var(--s-3);
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 5vw, 4.5rem);
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+            color: var(--c-dark);
         }
         
         .products-hero p {
@@ -148,6 +151,9 @@
 
         .products-grid {
             padding: var(--s-12) 0 var(--s-24);
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 3rem 1.5rem;
         }
 
         .no-results {
@@ -605,23 +611,26 @@
 
             filteredProducts.forEach(product => {
                 const article = document.createElement('article');
-                article.className = 'product-card reveal';
+                article.className = 'product-card reveal text-center group';
+                article.style.textAlign = 'center';
                 
                 const imageHTML = product.image 
-                    ? `<img src="${product.image}" alt="${product.name}" loading="lazy">`
-                    : `<div class="placeholder">${product.brand.charAt(0).toUpperCase()}</div>`;
+                    ? `<img src="${product.image}" alt="${product.name}" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;">`
+                    : `<div style="font-family: 'Playfair Display', serif; font-size: 3rem; color: rgba(15, 26, 20, 0.1);">${product.brand.substring(0,2).toUpperCase()}</div>`;
 
                 article.innerHTML = `
-                    <div class="product-card-image">
-                        ${imageHTML}
+                    <div style="border: 1px solid rgba(0,0,0,0.05); aspect-ratio: 3/4; position: relative; background: white; margin-bottom: 1rem; overflow: hidden; display: flex; align-items: center; justify-content: center;" onmouseover="this.querySelector('.p-add').style.transform='translateY(0)'" onmouseout="this.querySelector('.p-add').style.transform='translateY(100%)'">
+                        <a href="produto.html?id=${product.id}" style="display: flex; align-items: center; justify-content: center; height: 100%; text-decoration: none; width: 100%;">
+                            ${imageHTML}
+                        </a>
+                        <div class="p-add" style="position: absolute; bottom: 0; width: 100%; padding: 0.75rem; transform: translateY(100%); transition: transform 0.3s ease; background: white;">
+                            <button onclick="addToCart('${product.id}')" style="background: var(--c-primary); color: white; width: 100%; padding: 0.75rem; font-size: 0.625rem; letter-spacing: 0.1em; text-transform: uppercase; border: none; cursor: pointer; font-weight: 600;">Adicionar ao Carrinho</button>
+                        </div>
                     </div>
-                    <div class="product-card-body">
-                        <span class="product-card-brand">${product.brand}</span>
-                        <h3 class="product-card-title"><a href="produto.html?id=${product.id}">${product.name}</a></h3>
-                        <p class="product-card-desc">${product.desc}</p>
-                        <span class="product-card-price">${formatPrice(product.price)}</span>
-                        <button class="btn btn-primary" onclick="addToCart('${product.id}')">Adicionar ao Carrinho</button>
-                    </div>
+                    <span style="color: rgba(15, 26, 20, 0.5); font-size: 0.625rem; letter-spacing: 0.1em; text-transform: uppercase; display: block; margin-bottom: 0.5rem;">${product.brand}</span>
+                    <h3 style="font-family: 'Playfair Display', serif; font-size: 1rem; margin: 0 0 0.25rem;"><a href="produto.html?id=${product.id}" style="color: var(--c-dark); text-decoration: none;">${product.name}</a></h3>
+                    <p style="color: rgba(15, 26, 20, 0.5); font-size: 0.75rem; margin: 0 0 0.5rem; font-family: 'Inter', sans-serif;">${product.desc}</p>
+                    <span style="font-size: 0.875rem; font-weight: 600; color: var(--c-dark);">${formatPrice(product.price)}</span>
                 `;
                 
                 fragment.appendChild(article);
